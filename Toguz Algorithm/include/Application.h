@@ -2,16 +2,34 @@
 #define APPLICATION_H
 
 #include <SFML/Graphics.hpp>
+#include <State.h>
 
 class Application
 {
 private:
-	bool isRunning;
-
+	bool m_isRunning;
+	sf::Uint32 m_updateRate;
 
 
 public:
 	sf::RenderWindow window;
+
+	State* state;
+
+	Application();
+	~Application();
+
+	void run();
+
+	void appLoop();
+
+	void processInput(State*);
+
+	void quit();
+
+	void setUpdateRate(double updateRate);
+
+	double getUpdateRate();
 
 };
 
