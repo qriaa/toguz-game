@@ -9,11 +9,11 @@ class Application;
 class State
 {
 protected:
-	Application& mApp;
+	Application& m_app;
 
 public:
 
-	State(Application& mApp);
+	State(Application& t_app);
 	virtual ~State();
 
 	virtual void draw() = 0;

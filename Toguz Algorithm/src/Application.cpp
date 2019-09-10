@@ -3,6 +3,7 @@
 Application::Application():
 	m_updateRate(1000.0f / 20.0f)
 {
+	state = new MenuState(this);
 }
 
 Application::~Application()

@@ -24,6 +24,9 @@
     <ClCompile Include="src\State.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\MenuState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Application.h">
@@ -32,5 +35,13 @@
     <ClInclude Include="include\State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\MenuState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="res\comic.ttf">
+      <Filter>Resource Files</Filter>
+    </Font>
   </ItemGroup>
 </Project>
