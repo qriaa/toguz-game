@@ -8,3 +8,8 @@ State::State(Application& t_app):
 State::~State()
 {
 }
+
+Application& State::getApp()
+{
+	return m_app;
+}

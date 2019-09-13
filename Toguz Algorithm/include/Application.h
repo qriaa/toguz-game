@@ -1,9 +1,11 @@
+#pragma once
+
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
 #include <SFML/Graphics.hpp>
-#include "State.h"
 #include "MenuState.h"
+#include "State.h"
 
 class Application
 {
@@ -33,13 +35,5 @@ public:
 	double getUpdateRate();
 
 };
-
-
-
-
-
-
-
-
 
 #endif // !APPLICATION_H

@@ -1,7 +1,7 @@
 #include "Application.h"
 
 Application::Application():
-	m_updateRate(1000.0f / 20.0f)
+	m_updateRate(1000.0f / 20.0f), m_isRunning(true)
 {
 	state = new MenuState(this);
 }

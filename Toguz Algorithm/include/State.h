@@ -3,7 +3,6 @@
 #define STATE_H
 #include <SFML/Graphics.hpp>
 
-
 class Application;
 
 class State
@@ -12,9 +11,9 @@ protected:
 	Application& m_app;
 
 public:
-
 	State(Application& t_app);
 	virtual ~State();
+
 
 	virtual void draw() = 0;
 
@@ -24,8 +23,7 @@ public:
 
 	virtual void entry() = 0;
 
+	Application& getApp();
 };
-
-
 
 #endif
