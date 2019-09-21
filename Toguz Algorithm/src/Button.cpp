@@ -1,9 +1,12 @@
 #include "Button.h"
-#include "Application.h"
 
 Button::Button(State* t_state):
-	m_parentState(*t_state)
+	ClickRect(t_state)
 {
+	m_body.setPosition(sf::Vector2f(100,100));
+	m_body.setSize(sf::Vector2f(100, 100));
+	m_body.setOutlineThickness(-2);
+	m_body.setOutlineColor(sf::Color::Red);
 }
 
 Button::~Button()
@@ -14,24 +17,11 @@ void Button::update()
 {
 }
 
-State* Button::handleEvents(sf::Event&)
+State* Button::handleEvents(sf::Event& t_event)
 {
 	return nullptr;
 }
 
 void Button::draw()
 {
-}
-
-bool Button::isMouseOver()
-{
-	sf::Vector2i mousePos = sf::Mouse::getPosition(m_parentState.getApp().window);
-	sf::Vector2f bodyPos = m_body.getPosition();
-	sf::Vector2f bodySize = m_body.getSize();
-
-	if (mousePos.x >= bodyPos.x && mousePos.x <= bodyPos.x + bodySize.x &&		//mouse is inbetween the left and the right edge
-		mousePos.y >= bodyPos.y && mousePos.y <= bodyPos.y + bodySize.y)		//mouse is inbetween the top and bottom edge
-		return true;
-	else return false;
-
 }

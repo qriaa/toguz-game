@@ -1,28 +1,29 @@
 #pragma once
-
 #ifndef BUTTON_H
 #define BUTTON_H
-#include <SFML/Graphics.hpp>
-#include "State.h"
 
-class Button
+#include "ClickRect.h"
+
+class Button : public ClickRect
 {
-protected:
-	sf::RectangleShape m_body;
-	State& m_parentState;
+private:
+
+
 
 public:
 	Button(State*);
 	~Button();
 
+	void update();
 
-	virtual void update();
+	State* handleEvents(sf::Event&);
 
-	virtual State* handleEvents(sf::Event&);
+	void draw();
 
-	virtual void draw();
 
-	bool isMouseOver();
 };
 
-#endif // !BUTTON_H
+
+
+
+#endif

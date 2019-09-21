@@ -13,7 +13,7 @@ Application::~Application()
 
 void Application::run()
 {
-	window.create(sf::VideoMode(1024, 512), "Toguz Korgool");
+	window.create(sf::VideoMode(1280, 720), "Toguz Korgool", sf::Style::Titlebar | sf::Style::Close);
 	m_isRunning = true;
 
 	state->entry();
