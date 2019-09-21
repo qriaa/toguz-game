@@ -5,15 +5,18 @@
 #include <SFML/Graphics.hpp>
 #include "State.h"
 
+class Application;
+
 class ClickRect
 {
 protected:
 	sf::RectangleShape m_body;
 	State& m_parentState;
 
-
+	bool isClicked;
+	bool wasClicked;
 public:
-	ClickRect(State*);
+	ClickRect(State*, sf::Vector2f, sf::Vector2f);
 	~ClickRect();
 
 
@@ -21,7 +24,7 @@ public:
 
 	virtual State* handleEvents(sf::Event&) = 0;
 
-	virtual void draw() = 0;
+	virtual void draw(sf::RenderWindow&) = 0;
 
 	bool isMouseOver();
 };

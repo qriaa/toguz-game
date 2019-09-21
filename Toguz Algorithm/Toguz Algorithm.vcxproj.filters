@@ -56,4 +56,9 @@
       <Filter>Resource Files</Filter>
     </Font>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="res\dobrze.ogg">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
