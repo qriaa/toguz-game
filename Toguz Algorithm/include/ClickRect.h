@@ -13,8 +13,6 @@ protected:
 	sf::RectangleShape m_body;
 	State& m_parentState;
 
-	bool isClicked;
-	bool wasClicked;
 public:
 	ClickRect(State*, sf::Vector2f, sf::Vector2f);
 	~ClickRect();
