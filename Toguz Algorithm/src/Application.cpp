@@ -54,24 +54,25 @@ void Application::processInput(State* t_state)
 {
 	sf::Event anEvent;
 
-	window.pollEvent(anEvent);
-
-	switch (anEvent.type)
+	while (window.pollEvent(anEvent))
 	{
-	case sf::Event::Closed:
-		quit();
-		break;
-	case sf::Event::Resized:
-		break;
-	default:
-		State* newState = t_state->handleEvents(anEvent);
-		if (newState != NULL)
+		switch (anEvent.type)
 		{
-			delete t_state;
-			state = newState;
-			state->entry();
-		};
-		break;
+		case sf::Event::Closed:
+			quit();
+			break;
+		case sf::Event::Resized:
+			break;
+		default:
+			State* newState = t_state->handleEvents(anEvent);
+			if (newState != NULL)
+			{
+				delete t_state;
+				state = newState;
+				state->entry();
+			};
+			break;
+		}
 	}
 }
 

@@ -148,6 +148,9 @@
   <ItemGroup>
     <Font Include="res\comic.ttf" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="res\dobrze.ogg" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\sfml_system.redist.2.5.1\build\native\sfml_system.redist.targets" Condition="Exists('..\packages\sfml_system.redist.2.5.1\build\native\sfml_system.redist.targets')" />
