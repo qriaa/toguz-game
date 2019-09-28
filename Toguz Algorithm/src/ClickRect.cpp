@@ -14,7 +14,8 @@ ClickRect::~ClickRect()
 
 bool ClickRect::isMouseOver()
 {
-	sf::Vector2i mousePos = sf::Mouse::getPosition(m_parentState.getApp().window);
+	sf::Vector2i initPos = sf::Mouse::getPosition(m_parentState.getApp().window);
+	sf::Vector2f mousePos = m_parentState.getApp().window.mapPixelToCoords(initPos);
 	sf::Vector2f bodyPos = m_body.getPosition();
 	sf::Vector2f bodySize = m_body.getSize();
 

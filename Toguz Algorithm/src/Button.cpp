@@ -4,12 +4,12 @@
 Button::Button(State* t_state, sf::Vector2f t_position, sf::Vector2f t_size):
 	ClickRect(t_state, t_position, t_size)
 {
-	btnState = BTN_IDLE;
+	m_btnState = BTN_IDLE;
 	m_body.setFillColor(sf::Color::White);
 	m_body.setOutlineThickness(-2);
 	m_body.setOutlineColor(sf::Color::Black);
-	soundBuffer.loadFromFile("res/dobrze.ogg");
-	sound.setBuffer(soundBuffer);
+	m_soundBuffer.loadFromFile("res/dobrze.ogg");
+	m_sound.setBuffer(m_soundBuffer);
 }
 
 Button::~Button()
@@ -18,9 +18,9 @@ Button::~Button()
 
 void Button::update()
 {
-	previousState = btnState;
+	m_previousState = m_btnState;
 
-	switch (btnState)
+	switch (m_btnState)
 	{
 	case BTN_IDLE:
 		m_body.setFillColor(sf::Color::White);
@@ -32,8 +32,8 @@ void Button::update()
 
 	case BTN_ACTIVE:
 		m_body.setFillColor(sf::Color::Yellow);
-		sound.play();
-		btnState = BTN_HOVER;
+		m_sound.play();
+		m_btnState = BTN_HOVER;
 		break;
 
 	}
@@ -42,17 +42,17 @@ void Button::update()
 
 State* Button::handleEvents(sf::Event& t_event)
 {
-	btnState = BTN_IDLE;
+	m_btnState = BTN_IDLE;
 
 	if (isMouseOver())
 	{
-		btnState = BTN_HOVER;
+		m_btnState = BTN_HOVER;
 
 		if (t_event.type == sf::Event::MouseButtonPressed)
 		{
 			if (t_event.mouseButton.button == sf::Mouse::Left)
 			{
-				btnState = BTN_ACTIVE;
+				m_btnState = BTN_ACTIVE;
 			}
 		}
 	}
