@@ -10,11 +10,11 @@ enum Button_State {BTN_IDLE = 0, BTN_HOVER, BTN_ACTIVE};
 class Button : public ClickRect
 {
 private:
-	sf::SoundBuffer soundBuffer;
-	sf::Sound sound;
+	sf::SoundBuffer m_soundBuffer;
+	sf::Sound m_sound;
 
-	Button_State previousState;
-	Button_State btnState;
+	Button_State m_previousState;
+	Button_State m_btnState;
 
 public:
 	Button(State*, sf::Vector2f, sf::Vector2f);
