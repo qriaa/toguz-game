@@ -15,7 +15,13 @@ private:
 
 
 public:
+	const sf::Vector2i WINDOW_SIZE;
 	sf::RenderWindow window;
+	
+	sf::View view;
+
+
+
 
 	State* state;
 
@@ -33,6 +39,8 @@ public:
 	void setUpdateRate(double updateRate);
 
 	double getUpdateRate();
+
+	void updateAspectRatio();
 
 };
 

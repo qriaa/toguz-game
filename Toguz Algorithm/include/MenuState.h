@@ -9,10 +9,14 @@
 class MenuState : public State
 {
 private:
+	sf::Texture m_texture;
+	sf::Sprite m_backgroundSprite;
+
 	sf::Text m_titleText;
 	sf::Font m_font;
 
-	Button button;
+	Button m_button;
+
 
 public:
 	MenuState(Application* t_app);
