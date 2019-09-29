@@ -1,17 +1,17 @@
 #include "MenuState.h"
 
 MenuState::MenuState(Application* t_app):
-	State(*t_app), m_button(this, sf::Vector2f(100,100), sf::Vector2f(100, 100))
+	State(*t_app), m_button(this, sf::Vector2f(100,1080/3), sf::Vector2f(300, 100), "obal mi monument")
 {
 	m_texture.loadFromFile("res/wood.jpg");
 	m_texture.setRepeated(true);
 	m_backgroundSprite.setTexture(m_texture);
 	m_backgroundSprite.setTextureRect(sf::IntRect(sf::Vector2i(0,0), sf::Vector2i(1920, 1080)));
-	m_font.loadFromFile("res/comic.ttf");
-	m_titleText.setFont(m_font);
-	m_titleText.setFillColor(sf::Color::Black);
+	m_titleText.setFont(font);
+	m_titleText.setFillColor(sf::Color::White);
+	m_titleText.setCharacterSize(50);
 	m_titleText.setString("Kogut Zorgool");
-	m_titleText.setPosition(sf::Vector2f(200, 200));
+	m_titleText.setPosition(sf::Vector2f(100, 100));
 }
 
 MenuState::~MenuState()

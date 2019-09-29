@@ -13,20 +13,22 @@ private:
 	sf::SoundBuffer m_soundBuffer;
 	sf::Sound m_sound;
 
-	Button_State m_previousState;
-	Button_State m_btnState;
+	sf::Text m_text;
 
+	Button_State m_btnState;
+	bool m_isActive;
 public:
-	Button(State*, sf::Vector2f, sf::Vector2f);
+
+	Button(State*, sf::Vector2f, sf::Vector2f, std::string);
 	~Button();
 
 	void update();
 
-	State* handleEvents(sf::Event&);
+	void handleEvents(sf::Event&);
 
 	void draw(sf::RenderWindow&);
 
-
+	bool isActive();
 };
 
 

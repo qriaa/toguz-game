@@ -11,6 +11,8 @@ protected:
 	Application& m_app;
 
 public:
+	sf::Font font;
+
 	State(Application& t_app);
 	virtual ~State();
 

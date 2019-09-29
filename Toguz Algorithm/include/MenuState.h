@@ -13,12 +13,12 @@ private:
 	sf::Sprite m_backgroundSprite;
 
 	sf::Text m_titleText;
-	sf::Font m_font;
 
 	Button m_button;
 
 
 public:
+
 	MenuState(Application* t_app);
 	~MenuState();
 
