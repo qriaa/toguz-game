@@ -16,19 +16,24 @@ private:
 	sf::Text m_text;
 
 	Button_State m_btnState;
-	bool m_isActive;
+
 public:
 
-	Button(State*, sf::Vector2f, sf::Vector2f, std::string);
+	Button(State* t_state, sf::Vector2f t_position, sf::Vector2f t_size, std::string t_string);
 	~Button();
 
 	void update();
 
-	void handleEvents(sf::Event&);
+	virtual void handleEvents(sf::Event&);
 
 	void draw(sf::RenderWindow&);
 
-	bool isActive();
+private:
+
+	virtual void m_doOnIdle();
+	virtual void m_doOnHover();
+	virtual void m_doOnActive();
+
 };
 
 

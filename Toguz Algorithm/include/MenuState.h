@@ -3,8 +3,9 @@
 
 #include <vector>
 #include "State.h"
+#include "GameState.h"
 #include "Application.h"
-#include "Button.h"
+#include "StateButton.h"
 
 class MenuState : public State
 {
@@ -14,7 +15,7 @@ private:
 
 	sf::Text m_titleText;
 
-	Button m_button;
+	StateButton m_button;
 
 
 public:

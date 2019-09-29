@@ -1,7 +1,7 @@
 #include "MenuState.h"
 
 MenuState::MenuState(Application* t_app):
-	State(*t_app), m_button(this, sf::Vector2f(100,1080/3), sf::Vector2f(300, 100), "obal mi monument")
+	State(*t_app), m_button(this, sf::Vector2f(100,1080/3), sf::Vector2f(300, 100), "obal mi monument", goGame)
 {
 	m_texture.loadFromFile("res/wood.jpg");
 	m_texture.setRepeated(true);
@@ -28,6 +28,7 @@ void MenuState::draw()
 State* MenuState::handleEvents(sf::Event& t_event)
 {
 	m_button.handleEvents(t_event);
+	
 	return nullptr;
 }
 
