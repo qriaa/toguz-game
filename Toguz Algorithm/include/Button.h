@@ -9,10 +9,7 @@ enum Button_State {BTN_IDLE = 0, BTN_HOVER, BTN_ACTIVE};
 
 class Button : public ClickRect
 {
-private:
-	sf::SoundBuffer m_soundBuffer;
-	sf::Sound m_sound;
-
+protected:
 	sf::Text m_text;
 
 	Button_State m_btnState;
@@ -24,7 +21,7 @@ public:
 
 	void update();
 
-	virtual void handleEvents(sf::Event&);
+	virtual bool handleEvents(sf::Event&);
 
 	void draw(sf::RenderWindow&);
 

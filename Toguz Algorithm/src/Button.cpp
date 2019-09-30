@@ -13,9 +13,6 @@ Button::Button(State* t_state, sf::Vector2f t_position, sf::Vector2f t_size, std
 	m_body.setOutlineThickness(-2);
 	m_body.setOutlineColor(sf::Color::Black);
 
-	m_soundBuffer.loadFromFile("res/dobrze.ogg");
-	m_sound.setBuffer(m_soundBuffer);
-
 	m_text.setFont(m_parentState.font);
 	m_text.setFillColor(sf::Color::Red);
 	m_text.setString(t_string);
@@ -45,7 +42,7 @@ void Button::update()
 	}
 }
 
-void Button::handleEvents(sf::Event& t_event)
+bool Button::handleEvents(sf::Event& t_event)
 {
 	m_btnState = BTN_IDLE;
 
@@ -58,9 +55,11 @@ void Button::handleEvents(sf::Event& t_event)
 			if (t_event.mouseButton.button == sf::Mouse::Left)
 			{
 				m_btnState = BTN_ACTIVE;
+				return true;
 			}
 		}
 	}
+	return false;
 }
 
 void Button::draw(sf::RenderWindow& t_window)
@@ -82,5 +81,4 @@ void Button::m_doOnHover()
 void Button::m_doOnActive()
 {
 	m_body.setFillColor(sf::Color::Yellow);
-	m_sound.play();
 }

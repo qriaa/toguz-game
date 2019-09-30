@@ -2,29 +2,24 @@
 #define MENUSTATE_H
 
 #include <vector>
+#include "Application.h"
 #include "State.h"
 #include "GameState.h"
-#include "Application.h"
 #include "StateButton.h"
 
 class MenuState : public State
 {
 private:
-	sf::Texture m_texture;
-	sf::Sprite m_backgroundSprite;
-
 	sf::Text m_titleText;
 
 	StateButton m_button;
-
-
 public:
 
 	MenuState(Application* t_app);
 	~MenuState();
 
 
-	void draw();
+	void draw(sf::RenderWindow& t_window);
 	
 	State* handleEvents(sf::Event&);
 

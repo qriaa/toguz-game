@@ -15,7 +15,7 @@ public:
 	GameState(Application* t_app);
 	~GameState();
 
-	void draw();
+	void draw(sf::RenderWindow& t_window);
 
 	State* handleEvents(sf::Event&);
 

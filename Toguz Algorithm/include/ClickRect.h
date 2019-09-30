@@ -20,7 +20,7 @@ public:
 
 	virtual void update() = 0;
 
-	virtual void handleEvents(sf::Event&) = 0;
+	virtual bool handleEvents(sf::Event&) = 0;
 
 	virtual void draw(sf::RenderWindow&) = 0;
 

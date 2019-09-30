@@ -1,12 +1,8 @@
 #include "MenuState.h"
 
 MenuState::MenuState(Application* t_app):
-	State(*t_app), m_button(this, sf::Vector2f(100,1080/3), sf::Vector2f(300, 100), "obal mi monument", goGame)
+	State(*t_app, "res/wood.jpg"), m_button(this, sf::Vector2f(100,1080/3), sf::Vector2f(300, 100), "obal mi monument", CHC_goGame)
 {
-	m_texture.loadFromFile("res/wood.jpg");
-	m_texture.setRepeated(true);
-	m_backgroundSprite.setTexture(m_texture);
-	m_backgroundSprite.setTextureRect(sf::IntRect(sf::Vector2i(0,0), sf::Vector2i(1920, 1080)));
 	m_titleText.setFont(font);
 	m_titleText.setFillColor(sf::Color::White);
 	m_titleText.setCharacterSize(50);
@@ -18,17 +14,32 @@ MenuState::~MenuState()
 {
 }
 
-void MenuState::draw()
+void MenuState::draw(sf::RenderWindow& t_window)
 {
-	m_app.window.draw(m_backgroundSprite);
-	m_app.window.draw(m_titleText);
-	m_button.draw(m_app.window);
+	t_window.draw(m_backgroundSprite);
+	t_window.draw(m_titleText);
+	m_button.draw(t_window);
 }
 
 State* MenuState::handleEvents(sf::Event& t_event)
 {
-	m_button.handleEvents(t_event);
-	
+	if (m_button.handleEvents(t_event))
+	{
+		switch (m_button.choiceMade)
+		{
+		case(CHC_none):
+			break;
+		case(CHC_quit):
+			m_app.quit();
+			break;
+		case(CHC_goMenu):
+			return new MenuState(&m_app);
+			break;
+		case(CHC_goGame):
+			return new GameState(&m_app);
+			break;
+		}
+	}
 	return nullptr;
 }
 

@@ -46,7 +46,7 @@ void Application::appLoop()
 
 		window.clear(sf::Color::Black);
 		window.setView(view);
-		state->draw();
+		state->draw(window);
 
 		window.display();
 	}
