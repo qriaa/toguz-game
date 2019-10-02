@@ -23,5 +23,4 @@ bool ClickRect::isMouseOver()
 		mousePos.y >= bodyPos.y && mousePos.y <= bodyPos.y + bodySize.y)		//mouse is inbetween the top and bottom edge
 		return true;
 	else return false;
-
 }

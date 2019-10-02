@@ -3,33 +3,29 @@
 
 #include <vector>
 #include "State.h"
-#include "Application.h"
-#include "Button.h"
+#include "StateButton.h"
+
+class Application;
 
 class MenuState : public State
 {
 private:
-	sf::Texture m_texture;
-	sf::Sprite m_backgroundSprite;
-
 	sf::Text m_titleText;
-	sf::Font m_font;
 
-	Button m_button;
-
-
+	StateButton* m_button;
 public:
+
 	MenuState(Application* t_app);
 	~MenuState();
 
 
-	void draw();
+	void draw(sf::RenderWindow& t_window);
 	
-	State* handleEvents(sf::Event&);
+	void handleEvents(sf::Event&);
 
 	void update();
 
-	void entry();
+	void init();
 };
 
 

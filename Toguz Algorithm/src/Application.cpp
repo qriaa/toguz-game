@@ -1,14 +1,15 @@
 #include "Application.h"
 
+Application* Application::g_app = NULL;
+
 Application::Application():
-	m_updateRate(1000.0f / 20.0f), m_isRunning(true), WINDOW_SIZE(sf::Vector2i(1920,1080))
+	stateManager(this), m_updateRate(1000.0f / 20.0f), m_isRunning(true), WINDOW_SIZE(sf::Vector2i(1920,1080))
 {
-	state = new MenuState(this);
+	g_app = this;
 }
 
 Application::~Application()
 {
-	delete state;
 }
 
 void Application::run()
@@ -18,7 +19,8 @@ void Application::run()
 	window.setView(view);
 	m_isRunning = true;
 
-	state->entry();
+	stateManager.addState(new MenuState(this), false);
+
 	appLoop();
 
 	m_isRunning = false;
@@ -34,19 +36,19 @@ void Application::appLoop()
 
 	while (m_isRunning && window.isOpen())
 	{
-		processInput(state);
+		processInput(stateManager.getActiveState());
 		sf::Int32 updateTime = updateClock.getElapsedTime().asMilliseconds();
 
 		while ((updateTime - updateNext) >= m_updateRate)
 		{
-			state->update();
+			stateManager.getActiveState()->update();
 
 			updateNext += m_updateRate;
 		}
 
 		window.clear(sf::Color::Black);
 		window.setView(view);
-		state->draw();
+		stateManager.getActiveState()->draw(window);
 
 		window.display();
 	}
@@ -68,14 +70,7 @@ void Application::processInput(State* t_state)
 			updateAspectRatio();
 			break;
 		default:
-			State* newState = t_state->handleEvents(anEvent);
-			if (newState != NULL)
-			{
-				delete t_state;
-				state = newState;
-				state->entry();
-			};
-			break;
+			t_state->handleEvents(anEvent); // TOFIX: error appears when mouse is moved AND clicked (many events), rework state change
 		}
 	}
 }

@@ -1,41 +1,36 @@
 #include "MenuState.h"
 
 MenuState::MenuState(Application* t_app):
-	State(*t_app), m_button(this, sf::Vector2f(100,100), sf::Vector2f(100, 100))
+	State(*t_app, "res/wood.jpg"), m_button(new StateButton(this, sf::Vector2f(100,1080/3), sf::Vector2f(300, 100), "obal mi monument", CHC_goGame))
 {
-	m_texture.loadFromFile("res/wood.jpg");
-	m_texture.setRepeated(true);
-	m_backgroundSprite.setTexture(m_texture);
-	m_backgroundSprite.setTextureRect(sf::IntRect(sf::Vector2i(0,0), sf::Vector2i(1920, 1080)));
-	m_font.loadFromFile("res/comic.ttf");
-	m_titleText.setFont(m_font);
-	m_titleText.setFillColor(sf::Color::Black);
+	m_titleText.setFont(font);
+	m_titleText.setFillColor(sf::Color::White);
+	m_titleText.setCharacterSize(50);
 	m_titleText.setString("Kogut Zorgool");
-	m_titleText.setPosition(sf::Vector2f(200, 200));
+	m_titleText.setPosition(sf::Vector2f(100, 100));
 }
 
 MenuState::~MenuState()
 {
 }
 
-void MenuState::draw()
+void MenuState::draw(sf::RenderWindow& t_window)
 {
-	m_app.window.draw(m_backgroundSprite);
-	m_app.window.draw(m_titleText);
-	m_button.draw(m_app.window);
+	t_window.draw(m_backgroundSprite);
+	t_window.draw(m_titleText);
+	m_button->draw(t_window);
 }
 
-State* MenuState::handleEvents(sf::Event& t_event)
+void MenuState::handleEvents(sf::Event& t_event) //REWRITE
 {
-	m_button.handleEvents(t_event);
-	return nullptr;
+	m_button->handleEvents(t_event);
 }
 
 void MenuState::update()
 {
-	m_button.update();
+	m_button->update();
 }
 
-void MenuState::entry()
+void MenuState::init()
 {
 }
