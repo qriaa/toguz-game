@@ -15,15 +15,15 @@ void GameState::draw(sf::RenderWindow& t_window)
 	t_window.draw(m_backgroundSprite);
 }
 
-State* GameState::handleEvents(sf::Event&)
+void GameState::handleEvents(sf::Event&)
 {
-	return nullptr;
+	
 }
 
 void GameState::update()
 {
 }
 
-void GameState::entry()
+void GameState::init()
 {
 }

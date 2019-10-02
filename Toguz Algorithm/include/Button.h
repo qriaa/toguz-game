@@ -21,7 +21,7 @@ public:
 
 	void update();
 
-	virtual bool handleEvents(sf::Event&);
+	virtual void handleEvents(sf::Event&);
 
 	void draw(sf::RenderWindow&);
 

@@ -18,14 +18,17 @@ public:
 	State(Application& t_app, std::string t_backgroundTexturePath);
 	virtual ~State();
 
+	virtual void pause();
+
+	virtual void resume();
 
 	virtual void draw(sf::RenderWindow&) = 0;
 
-	virtual State* handleEvents(sf::Event&) = 0;
+	virtual void handleEvents(sf::Event&) = 0;
 
 	virtual void update() = 0;
 
-	virtual void entry() = 0;
+	virtual void init() = 0;
 
 	Application& getApp();
 };

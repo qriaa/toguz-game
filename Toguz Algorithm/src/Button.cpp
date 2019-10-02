@@ -42,7 +42,7 @@ void Button::update()
 	}
 }
 
-bool Button::handleEvents(sf::Event& t_event)
+void Button::handleEvents(sf::Event& t_event)
 {
 	m_btnState = BTN_IDLE;
 
@@ -55,11 +55,9 @@ bool Button::handleEvents(sf::Event& t_event)
 			if (t_event.mouseButton.button == sf::Mouse::Left)
 			{
 				m_btnState = BTN_ACTIVE;
-				return true;
 			}
 		}
 	}
-	return false;
 }
 
 void Button::draw(sf::RenderWindow& t_window)

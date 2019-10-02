@@ -15,6 +15,14 @@ State::~State()
 {
 }
 
+void State::pause()
+{
+}
+
+void State::resume()
+{
+}
+
 Application& State::getApp()
 {
 	return m_app;

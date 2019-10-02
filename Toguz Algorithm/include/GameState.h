@@ -17,11 +17,11 @@ public:
 
 	void draw(sf::RenderWindow& t_window);
 
-	State* handleEvents(sf::Event&);
+	void handleEvents(sf::Event&);
 
 	void update();
 
-	void entry();
+	void init();
 
 };
 

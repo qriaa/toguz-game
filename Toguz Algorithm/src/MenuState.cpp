@@ -1,7 +1,7 @@
 #include "MenuState.h"
 
 MenuState::MenuState(Application* t_app):
-	State(*t_app, "res/wood.jpg"), m_button(this, sf::Vector2f(100,1080/3), sf::Vector2f(300, 100), "obal mi monument", CHC_goGame)
+	State(*t_app, "res/wood.jpg"), m_button(new StateButton(this, sf::Vector2f(100,1080/3), sf::Vector2f(300, 100), "obal mi monument", CHC_goGame))
 {
 	m_titleText.setFont(font);
 	m_titleText.setFillColor(sf::Color::White);
@@ -18,36 +18,19 @@ void MenuState::draw(sf::RenderWindow& t_window)
 {
 	t_window.draw(m_backgroundSprite);
 	t_window.draw(m_titleText);
-	m_button.draw(t_window);
+	m_button->draw(t_window);
 }
 
-State* MenuState::handleEvents(sf::Event& t_event)
+void MenuState::handleEvents(sf::Event& t_event) //REWRITE
 {
-	if (m_button.handleEvents(t_event))
-	{
-		switch (m_button.choiceMade)
-		{
-		case(CHC_none):
-			break;
-		case(CHC_quit):
-			m_app.quit();
-			break;
-		case(CHC_goMenu):
-			return new MenuState(&m_app);
-			break;
-		case(CHC_goGame):
-			return new GameState(&m_app);
-			break;
-		}
-	}
-	return nullptr;
+	m_button->handleEvents(t_event);
 }
 
 void MenuState::update()
 {
-	m_button.update();
+	m_button->update();
 }
 
-void MenuState::entry()
+void MenuState::init()
 {
 }
