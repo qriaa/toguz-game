@@ -5,7 +5,8 @@
 
 
 Button::Button(State* t_state, sf::Vector2f t_position, sf::Vector2f t_size, std::string t_string):
-	ClickRect(t_state, t_position, t_size)
+	ClickRect(t_state, t_position, t_size),
+	m_isMouseClicked(false)
 {
 	m_btnState = BTN_IDLE;
 
@@ -25,6 +26,19 @@ Button::~Button()
 
 void Button::update()
 {
+	m_btnState = BTN_IDLE;
+
+	if (isMouseOver())
+	{
+		m_btnState = BTN_HOVER;
+
+		if (m_isMouseClicked)
+		{
+			m_btnState = BTN_ACTIVE;
+			m_isMouseClicked = false;
+		}
+	}
+
 	switch (m_btnState)
 	{
 	case BTN_IDLE:
@@ -44,18 +58,11 @@ void Button::update()
 
 void Button::handleEvents(sf::Event& t_event)
 {
-	m_btnState = BTN_IDLE;
-
-	if (isMouseOver())
+	if (t_event.type == sf::Event::MouseButtonPressed && isMouseOver())
 	{
-		m_btnState = BTN_HOVER;
-
-		if (t_event.type == sf::Event::MouseButtonPressed)
+		if (t_event.mouseButton.button == sf::Mouse::Left)
 		{
-			if (t_event.mouseButton.button == sf::Mouse::Left)
-			{
-				m_btnState = BTN_ACTIVE;
-			}
+			m_isMouseClicked = true;
 		}
 	}
 }

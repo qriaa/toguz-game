@@ -21,7 +21,7 @@ void MenuState::draw(sf::RenderWindow& t_window)
 	m_button->draw(t_window);
 }
 
-void MenuState::handleEvents(sf::Event& t_event) //REWRITE
+void MenuState::handleEvents(sf::Event& t_event)
 {
 	m_button->handleEvents(t_event);
 }
