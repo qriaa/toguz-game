@@ -3,7 +3,9 @@
 
 
 StateButton::StateButton(State* t_parentState, sf::Vector2f t_position, sf::Vector2f t_size, std::string t_string, ButtonChoice t_choice):
-	Button(t_parentState,t_position,t_size,t_string), choiceMade(t_choice)
+	Button(t_parentState,t_position,t_size,t_string),
+	choiceMade(t_choice),
+	stateChanged(false)
 {
 
 }
@@ -23,9 +25,11 @@ void StateButton::m_doOnActive()
 		break;
 	case CHC_goMenu:
 		Application::g_app->stateManager.addState(new MenuState(Application::g_app), true);
+		stateChanged = true;
 		break;
 	case CHC_goGame:
 		Application::g_app->stateManager.addState(new GameState(Application::g_app), true);
+		stateChanged = true;
 		break;
 	}
 }

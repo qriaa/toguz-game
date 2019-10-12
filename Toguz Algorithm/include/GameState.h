@@ -5,7 +5,6 @@
 
 #include "State.h"
 
-
 class GameState : public State
 {
 private:
@@ -22,7 +21,6 @@ public:
 	void update();
 
 	void init();
-
 };
 
 
