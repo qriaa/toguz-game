@@ -71,7 +71,7 @@ void Application::processInput(State* t_state)
 			updateAspectRatio();
 			break;
 		default:
-			t_state->handleEvents(anEvent); // TOFIX: error appears when mouse is moved AND clicked (many events), rework state change
+			t_state->handleEvents(anEvent);
 		}
 	}
 }
