@@ -1,8 +1,8 @@
 #include "ClickRect.h"
 #include "Application.h"
 
-ClickRect::ClickRect(State* t_state, sf::Vector2f t_position, sf::Vector2f t_size) :
-	m_parentState(*t_state)
+ClickRect::ClickRect(State* t_parentState, sf::Vector2f t_position, sf::Vector2f t_size):
+	m_parentState(*t_parentState)
 {
 	m_body.setPosition(t_position);
 	m_body.setSize(t_size);

@@ -12,6 +12,10 @@ private:
 	Application& m_app;
 
 	std::vector<State*> m_stateStack;
+	State* m_newState;
+	bool m_stateAdded;
+	bool m_stateRemoved;
+	bool m_isReplaced;
 
 public:
 	StateManager(Application* t_app);
@@ -19,6 +23,7 @@ public:
 
 	void addState(State* t_newState, bool t_isReplaced);
 	void removeState();
+	void updateStates();
 
 	State* getActiveState();
 

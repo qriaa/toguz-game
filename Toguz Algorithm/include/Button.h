@@ -13,7 +13,7 @@ protected:
 	sf::Text m_text;
 
 	Button_State m_btnState;
-
+	bool m_isMouseClicked;
 public:
 
 	Button(State* t_state, sf::Vector2f t_position, sf::Vector2f t_size, std::string t_string);

@@ -12,12 +12,11 @@ class ClickRect
 protected:
 	sf::RectangleShape m_body;
 	State& m_parentState;
-
 public:
-	ClickRect(State*, sf::Vector2f, sf::Vector2f);
+	ClickRect(State*,sf::Vector2f, sf::Vector2f);
 	~ClickRect();
 
 	bool isMouseOver();
 };
 
-#endif // !BUTTON_H
+#endif

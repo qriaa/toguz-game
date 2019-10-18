@@ -20,6 +20,7 @@ void Application::run()
 	m_isRunning = true;
 
 	stateManager.addState(new MenuState(this), false);
+	stateManager.updateStates();
 
 	appLoop();
 
@@ -45,7 +46,7 @@ void Application::appLoop()
 
 			updateNext += m_updateRate;
 		}
-
+		stateManager.updateStates();
 		window.clear(sf::Color::Black);
 		window.setView(view);
 		stateManager.getActiveState()->draw(window);
@@ -70,7 +71,7 @@ void Application::processInput(State* t_state)
 			updateAspectRatio();
 			break;
 		default:
-			t_state->handleEvents(anEvent); // TOFIX: error appears when mouse is moved AND clicked (many events), rework state change
+			t_state->handleEvents(anEvent);
 		}
 	}
 }
