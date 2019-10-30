@@ -3,15 +3,17 @@
 #define HOLEBUTTON_H
 
 #include "Button.h"
+class GameState;
 
 class HoleButton : public Button
 {
 private:
+	GameState& m_gameRef;
 
 public:
 
 public:
-	HoleButton(State* t_parentState, sf::Vector2f t_position, sf::Vector2f t_size, std::string t_string);
+	HoleButton(State* t_parentState,GameState* t_parentGame, sf::Vector2f t_position, sf::Vector2f t_size, std::string t_string);
 private:
 	void m_doOnActive();
 };

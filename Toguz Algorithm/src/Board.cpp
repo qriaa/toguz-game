@@ -7,7 +7,7 @@ Board::Board()
 		holes.emplace_back(0);
 	}
 	kazanOne = 0;
-	tuzOne = 0;
+	tuzOne = -1;
 	kazanTwo = 0;
-	tuzTwo = 0;
+	tuzTwo = -1;
 }
