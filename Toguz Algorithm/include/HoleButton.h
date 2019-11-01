@@ -8,12 +8,16 @@ class GameState;
 class HoleButton : public Button
 {
 private:
-	GameState& m_gameRef;
+	GameState& m_parentGame;
+	int m_holeNumber;
 
 public:
+	HoleButton(GameState* t_parentGame, sf::Vector2f t_position, sf::Vector2f t_size, int t_holeNumber);
 
-public:
-	HoleButton(State* t_parentState,GameState* t_parentGame, sf::Vector2f t_position, sf::Vector2f t_size, std::string t_string);
+	void update();
+
+	void draw(sf::RenderWindow&);
+
 private:
 	void m_doOnActive();
 };

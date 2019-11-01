@@ -2,9 +2,18 @@
 
 GameState::GameState(Application* t_app):
 	State(*t_app, "res/wood.jpg"),
-	m_menuButton(new StateButton(this, sf::Vector2f(1920 - 300, 1080 - 200), sf::Vector2f(200,100),"Menu",CHC_goMenu))
+	m_menuButton(new StateButton(this, sf::Vector2f(1920 - 300, 1080 - 200), sf::Vector2f(200,100),"Menu",CHC_goMenu)),
+	m_board(),
+	m_activePlayer(PLR_ONE)
 {
-	
+	for (int i = 0; i < 9; i++)
+	{
+		m_holes.emplace_back(new HoleButton(this,sf::Vector2f(300 + 100 * i,600), sf::Vector2f(100,100), i ));
+	}
+	for (int i = 9; i < 18; i++)
+	{
+		m_holes.emplace_back(new HoleButton(this, sf::Vector2f(300 + 100 * (i-9), 500), sf::Vector2f(100, 100), (17-i)+9));
+	}
 }
 
 GameState::~GameState()
@@ -15,16 +24,31 @@ void GameState::draw(sf::RenderWindow& t_window)
 {
 	t_window.draw(m_backgroundSprite);
 	m_menuButton->draw(t_window);
+
+	for (HoleButton* hole : m_holes)
+	{
+		hole->draw(t_window);
+	}
 }
 
 void GameState::handleEvents(sf::Event& t_event)
 {
 	m_menuButton->handleEvents(t_event);
+
+	for (HoleButton* hole : m_holes)
+	{
+		hole->handleEvents(t_event);
+	}
 }
 
 void GameState::update()
 {
 	m_menuButton->update();
+
+	for (HoleButton* hole : m_holes)
+	{
+		hole->update();
+	}
 }
 
 void GameState::init()
@@ -36,12 +60,23 @@ bool GameState::makeMove(int t_hole)
 	//hole is empty
 	if (m_board.holes[t_hole] == 0) 
 		return false;
+	//TODO: in case of incorrect move, do not change player and repeat move
+
 
 	//hole has one ball
 	if (m_board.holes[t_hole] == 1)
 	{
 		m_board.holes[t_hole] = 0;
+		if (t_hole == 17)
+		{
+			++m_board.holes[0];
+			m_checkHole(0);
+		}
+		else
+		{
 		++m_board.holes[t_hole + 1];
+		m_checkHole(t_hole + 1);
+		}
 		return true;
 	}
 
@@ -49,13 +84,18 @@ bool GameState::makeMove(int t_hole)
 	int hand = m_board.holes[t_hole] - 1;
 	m_board.holes[t_hole] = 1;
 	
-	int i = 1;
-	for (; hand > 0; i++)
+	int currentHole = t_hole;
+	while (hand > 0)
 	{
-		++m_board.holes[t_hole + i];
+		++currentHole;
+		if (currentHole >= 18) currentHole = 0;
+		++m_board.holes[currentHole];
 		--hand;
 	}
-	m_checkHole(i);
+	m_checkHole(currentHole);
+
+	//TODO: change current player
+
 	return true;
 }
 

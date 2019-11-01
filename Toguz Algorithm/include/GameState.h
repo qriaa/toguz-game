@@ -13,13 +13,14 @@ enum Player_Num { PLR_ONE, PLR_TWO };
 class GameState : public State
 {
 private:
-	Board m_board;
-
 	StateButton* m_menuButton;
 
 	Player_Num m_activePlayer;
 
+	std::vector<HoleButton*> m_holes;
 
+public:
+	Board m_board;
 public:
 	GameState(Application* t_app);
 	~GameState();
