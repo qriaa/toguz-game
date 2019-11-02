@@ -10,8 +10,8 @@ HoleButton::HoleButton(GameState* t_parentGame, sf::Vector2f t_position, sf::Vec
 
 void HoleButton::update()
 {
-	m_text.setString(std::to_string(m_parentGame.m_board.holes[m_holeNumber]));
-	Button::update(); // testing
+	setText(std::to_string(m_parentGame.m_board.holes[m_holeNumber]));
+	Button::update();
 }
 
 void HoleButton::draw(sf::RenderWindow& t_window)

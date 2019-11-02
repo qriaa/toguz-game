@@ -138,6 +138,7 @@
     <ClCompile Include="src\ClickRect.cpp" />
     <ClCompile Include="src\GameState.cpp" />
     <ClCompile Include="src\HoleButton.cpp" />
+    <ClCompile Include="src\Kazan.cpp" />
     <ClCompile Include="src\MenuState.cpp" />
     <ClCompile Include="src\State.cpp" />
     <ClCompile Include="src\StateButton.cpp" />
@@ -150,6 +151,8 @@
     <ClInclude Include="include\ClickRect.h" />
     <ClInclude Include="include\GameState.h" />
     <ClInclude Include="include\HoleButton.h" />
+    <ClInclude Include="include\Identifiers.h" />
+    <ClInclude Include="include\Kazan.h" />
     <ClInclude Include="include\MenuState.h" />
     <ClInclude Include="include\State.h" />
     <ClInclude Include="include\StateButton.h" />

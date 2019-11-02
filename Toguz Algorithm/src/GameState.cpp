@@ -8,16 +8,29 @@ GameState::GameState(Application* t_app):
 {
 	for (int i = 0; i < 9; i++)
 	{
-		m_holes.emplace_back(new HoleButton(this,sf::Vector2f(300 + 100 * i,600), sf::Vector2f(100,100), i ));
+		m_holes.emplace_back(new HoleButton(this,sf::Vector2f(465 + 110 * i, 640), sf::Vector2f(100,100), i ));
 	}
 	for (int i = 9; i < 18; i++)
 	{
-		m_holes.emplace_back(new HoleButton(this, sf::Vector2f(300 + 100 * (i-9), 500), sf::Vector2f(100, 100), (17-i)+9));
+		m_holes.emplace_back(new HoleButton(this, sf::Vector2f(465 + 110 * (i-9), 340), sf::Vector2f(100, 100), (17-i)+9));
 	}
+
+	kazanOne = new Kazan(this, sf::Vector2f(465,450), sf::Vector2f(880,80), PLR_ONE);
+	kazanTwo = new Kazan(this, sf::Vector2f(565,550), sf::Vector2f(880,80), PLR_TWO);
+
 }
 
 GameState::~GameState()
 {
+	while (!(m_holes.empty()))
+	{
+		delete m_holes.back();
+		m_holes.pop_back();
+	}
+	delete kazanOne;
+	kazanOne = nullptr;
+	delete kazanTwo;
+	kazanTwo = nullptr;
 }
 
 void GameState::draw(sf::RenderWindow& t_window)
@@ -29,6 +42,8 @@ void GameState::draw(sf::RenderWindow& t_window)
 	{
 		hole->draw(t_window);
 	}
+	kazanOne->draw(t_window);
+	kazanTwo->draw(t_window);
 }
 
 void GameState::handleEvents(sf::Event& t_event)
@@ -39,6 +54,8 @@ void GameState::handleEvents(sf::Event& t_event)
 	{
 		hole->handleEvents(t_event);
 	}
+	kazanOne->handleEvents(t_event);
+	kazanTwo->handleEvents(t_event);
 }
 
 void GameState::update()
@@ -49,6 +66,8 @@ void GameState::update()
 	{
 		hole->update();
 	}
+	kazanOne->update();
+	kazanTwo->update();
 }
 
 void GameState::init()

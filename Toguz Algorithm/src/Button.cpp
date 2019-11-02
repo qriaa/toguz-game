@@ -73,6 +73,12 @@ void Button::draw(sf::RenderWindow& t_window)
 	t_window.draw(m_text);
 }
 
+void Button::setText(std::string t_string)
+{
+	m_text.setString(t_string);
+	m_text.setPosition(sf::Vector2f(m_body.getPosition().x + (m_body.getSize().x / 2) - m_text.getGlobalBounds().width / 2, m_body.getPosition().y + (m_body.getSize().y / 2) - m_text.getGlobalBounds().height));
+}
+
 void Button::m_doOnIdle()
 {
 	m_body.setFillColor(sf::Color::White);

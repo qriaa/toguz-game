@@ -3,12 +3,12 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
+#include "Identifiers.h"
 #include "State.h"
 #include "StateButton.h"
-#include "HoleButton.h"
 #include "Board.h"
-
-enum Player_Num { PLR_ONE, PLR_TWO };
+#include "HoleButton.h"
+#include "Kazan.h"
 
 class GameState : public State
 {
@@ -19,6 +19,8 @@ private:
 
 	std::vector<HoleButton*> m_holes;
 
+	Kazan* kazanOne;
+	Kazan* kazanTwo;
 public:
 	Board m_board;
 public:

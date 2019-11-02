@@ -25,6 +25,8 @@ public:
 
 	virtual void draw(sf::RenderWindow&);
 
+	void setText(std::string t_string);
+
 protected:
 
 	virtual void m_doOnIdle();
