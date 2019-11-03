@@ -143,6 +143,7 @@
     <ClCompile Include="src\State.cpp" />
     <ClCompile Include="src\StateButton.cpp" />
     <ClCompile Include="src\StateManager.cpp" />
+    <ClCompile Include="src\TuzSlot.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Application.h" />
@@ -157,6 +158,7 @@
     <ClInclude Include="include\State.h" />
     <ClInclude Include="include\StateButton.h" />
     <ClInclude Include="include\StateManager.h" />
+    <ClInclude Include="include\TuzSlot.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="res\comic.ttf" />

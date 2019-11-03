@@ -1,4 +1,4 @@
-#include "../include/Kazan.h"
+#include "Kazan.h"
 #include "Application.h"
 
 Kazan::Kazan(GameState* t_parentGame, sf::Vector2f t_position, sf::Vector2f t_size, Player_Num t_whoseKazan) :

@@ -9,6 +9,7 @@
 #include "Board.h"
 #include "HoleButton.h"
 #include "Kazan.h"
+#include "TuzSlot.h"
 
 class GameState : public State
 {
@@ -18,9 +19,11 @@ private:
 	Player_Num m_activePlayer;
 
 	std::vector<HoleButton*> m_holes;
-
 	Kazan* kazanOne;
 	Kazan* kazanTwo;
+	TuzSlot* tuzOne;
+	TuzSlot* tuzTwo;
+
 public:
 	Board m_board;
 public:

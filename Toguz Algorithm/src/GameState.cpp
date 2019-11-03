@@ -10,13 +10,15 @@ GameState::GameState(Application* t_app):
 	{
 		m_holes.emplace_back(new HoleButton(this,sf::Vector2f(465 + 110 * i, 640), sf::Vector2f(100,100), i ));
 	}
-	for (int i = 9; i < 18; i++)
+	for (int i = 9; i > 0; i--)
 	{
-		m_holes.emplace_back(new HoleButton(this, sf::Vector2f(465 + 110 * (i-9), 340), sf::Vector2f(100, 100), (17-i)+9));
+		m_holes.emplace_back(new HoleButton(this, sf::Vector2f(1345 - 110 * (9-i), 340), sf::Vector2f(100, 100), 18-i));
 	}
 
-	kazanOne = new Kazan(this, sf::Vector2f(465,450), sf::Vector2f(880,80), PLR_ONE);
-	kazanTwo = new Kazan(this, sf::Vector2f(565,550), sf::Vector2f(880,80), PLR_TWO);
+	kazanOne = new Kazan(this, sf::Vector2f(575,450), sf::Vector2f(870,80), PLR_ONE);
+	kazanTwo = new Kazan(this, sf::Vector2f(465,550), sf::Vector2f(870,80), PLR_TWO);
+	tuzOne = new TuzSlot(this, sf::Vector2f(1355,550), sf::Vector2f(80,80), PLR_ONE);
+	tuzTwo = new TuzSlot(this, sf::Vector2f(475,450), sf::Vector2f(80,80), PLR_TWO);
 
 }
 
@@ -44,6 +46,8 @@ void GameState::draw(sf::RenderWindow& t_window)
 	}
 	kazanOne->draw(t_window);
 	kazanTwo->draw(t_window);
+	tuzOne->draw(t_window);
+	tuzTwo->draw(t_window);
 }
 
 void GameState::handleEvents(sf::Event& t_event)
@@ -56,6 +60,8 @@ void GameState::handleEvents(sf::Event& t_event)
 	}
 	kazanOne->handleEvents(t_event);
 	kazanTwo->handleEvents(t_event);
+	tuzOne->handleEvents(t_event);
+	tuzTwo->handleEvents(t_event);
 }
 
 void GameState::update()
@@ -68,6 +74,8 @@ void GameState::update()
 	}
 	kazanOne->update();
 	kazanTwo->update();
+	tuzOne->update();
+	tuzTwo->update();
 }
 
 void GameState::init()
@@ -127,9 +135,10 @@ void GameState::m_checkHole(int t_hole)
 			m_board.kazanOne += m_board.holes[t_hole];
 			m_board.holes[t_hole] = 0;
 		}
-		if (m_board.tuzOne != -1 && m_board.holes[t_hole] == 3 && t_hole != 17)
+		if (m_board.tuzOne == -1 && m_board.holes[t_hole] == 3 && t_hole != 17)
 		{
 			m_board.tuzOne = t_hole;
+			m_holes[t_hole]->setTuz();
 		}
 	}
 
@@ -140,21 +149,22 @@ void GameState::m_checkHole(int t_hole)
 			m_board.kazanOne += m_board.holes[t_hole];
 			m_board.holes[t_hole] = 0;
 		}
-		if (m_board.tuzTwo != -1 && m_board.holes[t_hole] == 3 && t_hole != 8)
+		if (m_board.tuzTwo == -1 && m_board.holes[t_hole] == 3 && t_hole != 8)
 		{
 			m_board.tuzTwo = t_hole;
+			m_holes[t_hole]->setTuz();
 		}
 	}
 
 	if (m_board.tuzOne != -1)
 	{
-		m_board.kazanOne += m_board.holes[m_board.tuzOne - 1];
-		m_board.holes[m_board.tuzOne - 1] = 0;
+		m_board.kazanOne += m_board.holes[m_board.tuzOne];
+		m_board.holes[m_board.tuzOne] = 0;
 	}
 	if (m_board.tuzTwo != -1)
 	{
-		m_board.kazanTwo += m_board.holes[m_board.tuzTwo - 1];
-		m_board.holes[m_board.tuzTwo - 1] = 0;
+		m_board.kazanTwo += m_board.holes[m_board.tuzTwo];
+		m_board.holes[m_board.tuzTwo] = 0;
 	}
 
 }
