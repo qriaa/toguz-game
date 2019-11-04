@@ -25,6 +25,8 @@ public:
 	void handleEvents(sf::Event&);
 
 	void draw(sf::RenderWindow&);
+
+	void changePlayer();
 };
 
 

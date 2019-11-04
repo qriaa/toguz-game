@@ -84,11 +84,18 @@ void GameState::init()
 
 bool GameState::makeMove(int t_hole)
 {
+	//wrong player
+	if (t_hole < 9 && m_activePlayer != PLR_ONE ||
+		t_hole > 8 && m_activePlayer != PLR_TWO)
+		return false;
+
+	//hole has tuz in it
+	if (t_hole == m_board.tuzOne || t_hole == m_board.tuzTwo)
+		return false;
+
 	//hole is empty
 	if (m_board.holes[t_hole] == 0) 
 		return false;
-	//TODO: in case of incorrect move, do not change player and repeat move
-
 
 	//hole has one ball
 	if (m_board.holes[t_hole] == 1)
@@ -104,6 +111,7 @@ bool GameState::makeMove(int t_hole)
 		++m_board.holes[t_hole + 1];
 		m_checkHole(t_hole + 1);
 		}
+		m_changeActivePlayer();
 		return true;
 	}
 
@@ -120,8 +128,7 @@ bool GameState::makeMove(int t_hole)
 		--hand;
 	}
 	m_checkHole(currentHole);
-
-	//TODO: change current player
+	m_changeActivePlayer();
 
 	return true;
 }
@@ -135,10 +142,9 @@ void GameState::m_checkHole(int t_hole)
 			m_board.kazanOne += m_board.holes[t_hole];
 			m_board.holes[t_hole] = 0;
 		}
-		if (m_board.tuzOne == -1 && m_board.holes[t_hole] == 3 && t_hole != 17)
+		if (m_board.tuzOne == -1 && m_board.holes[t_hole] == 3 && t_hole != 17 && m_board.tuzTwo != t_hole - 9)
 		{
 			m_board.tuzOne = t_hole;
-			m_holes[t_hole]->setTuz();
 		}
 	}
 
@@ -146,13 +152,12 @@ void GameState::m_checkHole(int t_hole)
 	{
 		if (m_board.holes[t_hole] % 2 == 0)
 		{
-			m_board.kazanOne += m_board.holes[t_hole];
+			m_board.kazanTwo += m_board.holes[t_hole];
 			m_board.holes[t_hole] = 0;
 		}
-		if (m_board.tuzTwo == -1 && m_board.holes[t_hole] == 3 && t_hole != 8)
+		if (m_board.tuzTwo == -1 && m_board.holes[t_hole] == 3 && t_hole != 8 && m_board.tuzOne != t_hole + 9)
 		{
 			m_board.tuzTwo = t_hole;
-			m_holes[t_hole]->setTuz();
 		}
 	}
 
@@ -167,4 +172,33 @@ void GameState::m_checkHole(int t_hole)
 		m_board.holes[m_board.tuzTwo] = 0;
 	}
 
+}
+
+void GameState::m_changeActivePlayer()
+{
+	if (m_activePlayer == PLR_ONE)
+	{
+		for (int i=0; i < 9;i++)
+		{
+			m_holes[i]->setHoleNumber(i+9);
+		}
+		for (int i = 0; i < 9; i++)
+		{
+			m_holes[9+i]->setHoleNumber(i);
+		}
+		m_activePlayer = PLR_TWO;
+	}
+	else if (m_activePlayer == PLR_TWO)
+	{
+		for (int i = 0; i < 18; i++)
+		{
+			m_holes[i]->setHoleNumber(i);
+		}
+		m_activePlayer = PLR_ONE;
+	}
+
+	kazanOne->changePlayer();
+	kazanTwo->changePlayer();
+	tuzOne->changePlayer();
+	tuzTwo->changePlayer();
 }

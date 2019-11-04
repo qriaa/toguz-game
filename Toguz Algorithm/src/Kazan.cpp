@@ -55,3 +55,16 @@ void Kazan::draw(sf::RenderWindow& t_window)
 	t_window.draw(m_body);
 	t_window.draw(m_text);
 }
+
+void Kazan::changePlayer()
+{
+	switch (m_whoseKazan)
+	{
+	case PLR_ONE:
+		m_whoseKazan = PLR_TWO;
+		break;
+	case PLR_TWO:
+		m_whoseKazan = PLR_ONE;
+		break;
+	}
+}

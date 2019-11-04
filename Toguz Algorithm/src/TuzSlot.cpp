@@ -58,3 +58,18 @@ void TuzSlot::draw(sf::RenderWindow& t_window)
 {
 	t_window.draw(m_body);
 }
+
+void TuzSlot::changePlayer()
+{
+	switch (m_whoseTuzSlot)
+	{
+	case PLR_ONE:
+		m_whoseTuzSlot = PLR_TWO;
+		m_body.setFillColor(sf::Color::Blue);
+		break;
+	case PLR_TWO:
+		m_whoseTuzSlot = PLR_ONE;
+		m_body.setFillColor(sf::Color::Red);
+		break;
+	}
+}

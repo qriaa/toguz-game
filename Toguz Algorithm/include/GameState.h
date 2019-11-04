@@ -42,6 +42,7 @@ public:
 
 private:
 	void m_checkHole(int t_hole);
+	void m_changeActivePlayer();
 };
 
 
