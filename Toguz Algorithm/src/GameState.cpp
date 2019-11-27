@@ -4,7 +4,8 @@ GameState::GameState(Application* t_app):
 	State(*t_app, "res/wood.jpg"),
 	m_menuButton(new StateButton(this, sf::Vector2f(1920 - 300, 1080 - 200), sf::Vector2f(200,100),"Menu",CHC_goMenu)),
 	m_board(),
-	m_activePlayer(PLR_ONE)
+	m_activePlayer(PLR_ONE),
+	m_gameFinished(false)
 {
 	for (int i = 0; i < 9; i++)
 	{
@@ -84,6 +85,10 @@ void GameState::init()
 
 bool GameState::makeMove(int t_hole)
 {
+	//game finished
+	if (m_gameFinished)
+		return false;
+
 	//wrong player
 	if (t_hole < 9 && m_activePlayer != PLR_ONE ||
 		t_hole > 8 && m_activePlayer != PLR_TWO)
@@ -127,11 +132,15 @@ bool GameState::makeMove(int t_hole)
 		++m_board.holes[currentHole];
 		--hand;
 	}
+
 	m_checkHole(currentHole);
-	m_changeActivePlayer();
+	m_checkForVictory();
+	if (!m_gameFinished)
+		m_changeActivePlayer();
 
 	return true;
 }
+
 
 void GameState::m_checkHole(int t_hole)
 {
@@ -201,4 +210,27 @@ void GameState::m_changeActivePlayer()
 	kazanTwo->changePlayer();
 	tuzOne->changePlayer();
 	tuzTwo->changePlayer();
+}
+
+void GameState::m_checkForVictory() // TODO: add draw
+{
+	if (m_board.kazanOne > 81)
+	{
+		m_endGame(PLR_ONE);
+		m_gameFinished = true;
+		return;
+	}
+	else if (m_board.kazanTwo > 81)
+	{
+		m_endGame(PLR_TWO);
+		m_gameFinished = true;
+		return;
+	}
+}
+
+void GameState::m_endGame(Player_Num t_victoriousPlayer) // TODO: add game finish window
+{
+
+
+
 }

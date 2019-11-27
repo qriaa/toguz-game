@@ -24,6 +24,7 @@ private:
 	TuzSlot* tuzOne;
 	TuzSlot* tuzTwo;
 
+	bool m_gameFinished;
 public:
 	Board m_board;
 public:
@@ -43,6 +44,8 @@ public:
 private:
 	void m_checkHole(int t_hole);
 	void m_changeActivePlayer();
+	void m_checkForVictory();
+	void m_endGame(Player_Num t_victoriousPlayer);
 };
 
 
