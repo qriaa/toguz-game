@@ -2,9 +2,9 @@
 #ifndef STATEBUTTON_H
 #define STATEBUTTON_H
 
+#include "Identifiers.h"
 #include "Button.h"
 
-enum ButtonChoice {CHC_none,CHC_quit,CHC_goMenu, CHC_goGame};
 
 class StateButton : public Button
 {

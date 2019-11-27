@@ -19,13 +19,15 @@ public:
 	Button(State* t_state, sf::Vector2f t_position, sf::Vector2f t_size, std::string t_string);
 	~Button();
 
-	void update();
+	virtual void update();
 
 	virtual void handleEvents(sf::Event&);
 
-	void draw(sf::RenderWindow&);
+	virtual void draw(sf::RenderWindow&);
 
-private:
+	void setText(std::string t_string);
+
+protected:
 
 	virtual void m_doOnIdle();
 	virtual void m_doOnHover();

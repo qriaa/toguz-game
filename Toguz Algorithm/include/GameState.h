@@ -3,22 +3,30 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
+#include "Identifiers.h"
 #include "State.h"
 #include "StateButton.h"
-#include "HoleButton.h"
 #include "Board.h"
+#include "HoleButton.h"
+#include "Kazan.h"
+#include "TuzSlot.h"
 
 class GameState : public State
 {
-	friend class HoleButton;
 private:
-	Board board;
+	StateButton* m_menuButton;
 
+	Player_Num m_activePlayer;
 
+	std::vector<HoleButton*> m_holes;
+	Kazan* kazanOne;
+	Kazan* kazanTwo;
+	TuzSlot* tuzOne;
+	TuzSlot* tuzTwo;
 
-
-
-	StateButton* menuButton;
+	bool m_gameFinished;
+public:
+	Board m_board;
 public:
 	GameState(Application* t_app);
 	~GameState();
@@ -31,6 +39,13 @@ public:
 
 	void init();
 
+	bool makeMove(int t_hole);
+
+private:
+	void m_checkHole(int t_hole);
+	void m_changeActivePlayer();
+	void m_checkForVictory();
+	void m_endGame(Player_Num t_victoriousPlayer);
 };
 
 
