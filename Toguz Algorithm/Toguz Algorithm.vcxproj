@@ -145,6 +145,7 @@
     <ClCompile Include="src\Board.cpp" />
     <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\ClickRect.cpp" />
+    <ClCompile Include="src\DialogueBox.cpp" />
     <ClCompile Include="src\GameState.cpp" />
     <ClCompile Include="src\HoleButton.cpp" />
     <ClCompile Include="src\Kazan.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="include\Board.h" />
     <ClInclude Include="include\Button.h" />
     <ClInclude Include="include\ClickRect.h" />
+    <ClInclude Include="include\DialogueBox.h" />
     <ClInclude Include="include\GameState.h" />
     <ClInclude Include="include\HoleButton.h" />
     <ClInclude Include="include\Identifiers.h" />

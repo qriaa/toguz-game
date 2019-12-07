@@ -16,6 +16,14 @@ public:
 	ClickRect(State*,sf::Vector2f, sf::Vector2f);
 	~ClickRect();
 
+	void draw(sf::RenderWindow& window);
+
+	void handleEvents(sf::Event&);
+
+	void update();
+
+	void init();
+
 	bool isMouseOver();
 };
 

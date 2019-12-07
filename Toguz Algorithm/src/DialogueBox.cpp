@@ -1,0 +1,38 @@
+#include "DialogueBox.h"
+#include "Application.h"
+
+DialogueBox::DialogueBox(State* t_parentState,sf::Vector2f t_pos, sf::Vector2f t_size):
+	m_parentState(*t_parentState),
+	m_dragBar(t_parentState,t_pos,sf::Vector2f(t_size.x,20))
+{
+	m_mainBox.setPosition(t_pos);
+	m_mainBox.setSize(t_size);
+
+}
+
+DialogueBox::~DialogueBox()
+{
+}
+
+void DialogueBox::draw(sf::RenderWindow& window)
+{
+	window.draw(m_mainBox);
+	m_dragBar.draw(window);
+}
+
+void DialogueBox::handleEvents(sf::Event& t_event)
+{
+}
+
+void DialogueBox::update()
+{
+}
+
+void DialogueBox::init()
+{
+}
+
+bool DialogueBox::isMouseOver()
+{
+	return false;
+}

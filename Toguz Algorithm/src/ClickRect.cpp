@@ -12,6 +12,23 @@ ClickRect::~ClickRect()
 {
 }
 
+void ClickRect::draw(sf::RenderWindow& window)
+{
+	window.draw(m_body);
+}
+
+void ClickRect::handleEvents(sf::Event&)
+{
+}
+
+void ClickRect::update()
+{
+}
+
+void ClickRect::init()
+{
+}
+
 bool ClickRect::isMouseOver()
 {
 	sf::Vector2i initPos = sf::Mouse::getPosition(m_parentState.getApp().window);
