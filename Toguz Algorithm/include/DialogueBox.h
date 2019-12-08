@@ -3,7 +3,7 @@
 #define DIALOGUEBOX_H
 
 #include "Identifiers.h"
-#include "Button.h"
+#include "DragBar.h"
 
 class DialogueBox
 {
@@ -11,9 +11,9 @@ private:
 	State& m_parentState;
 
 	sf::RectangleShape m_mainBox;
-	ClickRect m_dragBar;
+	DragBar m_dragBar;
 
-
+	bool m_isMouseClicked;
 
 public:
 	DialogueBox(State* t_parentState, sf::Vector2f t_pos, sf::Vector2f t_size);
@@ -26,9 +26,6 @@ public:
 	void update();
 
 	void init();
-
-private:
-	bool isMouseOver();
 };
 
 

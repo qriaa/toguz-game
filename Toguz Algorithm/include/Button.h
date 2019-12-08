@@ -13,6 +13,7 @@ protected:
 	sf::Text m_text;
 
 	Button_State m_btnState;
+	Button_State m_previousState;
 	bool m_isMouseClicked;
 public:
 
@@ -28,6 +29,9 @@ public:
 	void setText(std::string t_string);
 
 protected:
+	virtual void m_initIdle();
+	virtual void m_initHover();
+	virtual void m_initActive();
 
 	virtual void m_doOnIdle();
 	virtual void m_doOnHover();

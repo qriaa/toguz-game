@@ -29,7 +29,11 @@ void HoleButton::setHoleNumber(int t_number)
 	m_holeNumber = t_number;
 }
 
-void HoleButton::m_doOnActive()
+void HoleButton::m_initActive()
 {
 	m_parentGame.makeMove(m_holeNumber);
+}
+
+void HoleButton::m_doOnActive()
+{
 }
