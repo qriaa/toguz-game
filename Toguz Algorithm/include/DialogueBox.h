@@ -13,10 +13,9 @@ private:
 	sf::RectangleShape m_mainBox;
 	DragBar m_dragBar;
 
-	bool m_isMouseClicked;
-
 public:
 	DialogueBox(State* t_parentState, sf::Vector2f t_pos, sf::Vector2f t_size);
+	DialogueBox(State* t_parentState, sf::Vector2f t_size);
 	~DialogueBox();
 
 	void draw(sf::RenderWindow& window);
@@ -26,6 +25,10 @@ public:
 	void update();
 
 	void init();
+
+	void setPosition(sf::Vector2f);
+
+	friend class DragBar;
 };
 
 
