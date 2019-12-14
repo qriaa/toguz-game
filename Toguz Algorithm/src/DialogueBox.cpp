@@ -7,6 +7,7 @@ DialogueBox::DialogueBox(State* t_parentState,sf::Vector2f t_pos, sf::Vector2f t
 {
 	m_mainBox.setPosition(t_pos);
 	m_mainBox.setSize(t_size);
+	m_mainBox.setOutlineThickness(2);
 }
 
 DialogueBox::DialogueBox(State* t_parentState, sf::Vector2f t_size):

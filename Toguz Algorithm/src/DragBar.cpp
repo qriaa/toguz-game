@@ -3,12 +3,11 @@
 #include "DialogueBox.h"
 
 DragBar::DragBar(State* t_parentState,DialogueBox* t_parentBox, sf::Vector2f t_position, sf::Vector2f t_size):
-	ClickRect(t_parentState,t_position,t_size),
+	Button(t_parentState,t_position,t_size),
 	m_parentBox(*t_parentBox),
-	m_isMouseClicked(false),
 	m_hasRelativePos(false)
 {
-
+	m_body.setOutlineThickness(2);
 }
 
 DragBar::~DragBar()
@@ -33,29 +32,17 @@ void DragBar::update()
 	{
 		m_hasRelativePos = false;
 	}
+	Button::update();
 }
 
 void DragBar::handleEvents(sf::Event& t_event)
 {
-	if (t_event.type == sf::Event::MouseButtonPressed && isMouseOver())
-	{
-		if (t_event.mouseButton.button == sf::Mouse::Left)
-		{
-			m_isMouseClicked = true;
-		}
-	}
-	if (t_event.type == sf::Event::MouseButtonReleased)
-	{
-		if (t_event.mouseButton.button == sf::Mouse::Left)
-		{
-			m_isMouseClicked = false;
-		}
-	}
+	Button::handleEvents(t_event);
 }
 
 void DragBar::draw(sf::RenderWindow& t_window)
 {
-	t_window.draw(m_body);
+	Button::draw(t_window);
 }
 
 void DragBar::init()
@@ -65,4 +52,19 @@ void DragBar::init()
 void DragBar::setPosition(sf::Vector2f t_pos)
 {
 	m_body.setPosition(t_pos);
+}
+
+void DragBar::m_initActive()
+{
+	sf::Vector2i initPos = sf::Mouse::getPosition(m_parentState.getApp().window);
+	sf::Vector2f mousePos = m_parentState.getApp().window.mapPixelToCoords(initPos);
+	m_mouseRelativePos = mousePos - m_parentBox.m_mainBox.getPosition();
+	m_hasRelativePos = true;
+}
+
+void DragBar::m_doOnActive()
+{
+	sf::Vector2i initPos = sf::Mouse::getPosition(m_parentState.getApp().window);
+	sf::Vector2f mousePos = m_parentState.getApp().window.mapPixelToCoords(initPos);
+	m_parentBox.setPosition(mousePos - m_mouseRelativePos);
 }

@@ -21,7 +21,7 @@ void HoleButton::update()
 void HoleButton::draw(sf::RenderWindow& t_window)
 {
 	t_window.draw(m_body);
-	t_window.draw(m_text);
+	m_textBehavior->draw(t_window);
 }
 
 void HoleButton::setHoleNumber(int t_number)

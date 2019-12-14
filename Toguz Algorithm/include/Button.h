@@ -3,6 +3,8 @@
 #define BUTTON_H
 
 #include "ClickRect.h"
+#include "HasText.h"
+#include "NoText.h"
 #include <SFML/Audio.hpp>
 
 enum Button_State {BTN_IDLE = 0, BTN_HOVER, BTN_ACTIVE};
@@ -10,7 +12,7 @@ enum Button_State {BTN_IDLE = 0, BTN_HOVER, BTN_ACTIVE};
 class Button : public ClickRect
 {
 protected:
-	sf::Text m_text;
+	TextBehavior* m_textBehavior;
 
 	Button_State m_btnState;
 	Button_State m_previousState;
@@ -18,6 +20,8 @@ protected:
 public:
 
 	Button(State* t_state, sf::Vector2f t_position, sf::Vector2f t_size, std::string t_string);
+	Button(State* t_state, sf::Vector2f t_position, sf::Vector2f t_size);
+
 	~Button();
 
 	virtual void update();

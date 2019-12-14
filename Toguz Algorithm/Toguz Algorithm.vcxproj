@@ -148,12 +148,15 @@
     <ClCompile Include="src\DialogueBox.cpp" />
     <ClCompile Include="src\DragBar.cpp" />
     <ClCompile Include="src\GameState.cpp" />
+    <ClCompile Include="src\HasText.cpp" />
     <ClCompile Include="src\HoleButton.cpp" />
     <ClCompile Include="src\Kazan.cpp" />
     <ClCompile Include="src\MenuState.cpp" />
+    <ClCompile Include="src\NoText.cpp" />
     <ClCompile Include="src\State.cpp" />
     <ClCompile Include="src\StateButton.cpp" />
     <ClCompile Include="src\StateManager.cpp" />
+    <ClCompile Include="src\TextBehavior.cpp" />
     <ClCompile Include="src\TuzSlot.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -164,13 +167,16 @@
     <ClInclude Include="include\DialogueBox.h" />
     <ClInclude Include="include\DragBar.h" />
     <ClInclude Include="include\GameState.h" />
+    <ClInclude Include="include\HasText.h" />
     <ClInclude Include="include\HoleButton.h" />
     <ClInclude Include="include\Identifiers.h" />
     <ClInclude Include="include\Kazan.h" />
     <ClInclude Include="include\MenuState.h" />
+    <ClInclude Include="include\NoText.h" />
     <ClInclude Include="include\State.h" />
     <ClInclude Include="include\StateButton.h" />
     <ClInclude Include="include\StateManager.h" />
+    <ClInclude Include="include\TextBehavior.h" />
     <ClInclude Include="include\TuzSlot.h" />
   </ItemGroup>
   <ItemGroup>

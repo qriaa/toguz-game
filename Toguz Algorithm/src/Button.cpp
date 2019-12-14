@@ -15,10 +15,21 @@ Button::Button(State* t_state, sf::Vector2f t_position, sf::Vector2f t_size, std
 	m_body.setOutlineThickness(-2);
 	m_body.setOutlineColor(sf::Color::Black);
 
-	m_text.setFont(m_parentState.font);
-	m_text.setFillColor(sf::Color::Red);
-	m_text.setString(t_string);
-	m_text.setPosition(sf::Vector2f(t_position.x + (t_size.x/2) - m_text.getGlobalBounds().width / 2 , t_position.y + (t_size.y/2) - m_text.getGlobalBounds().height));
+	m_textBehavior = new HasText(m_body,m_parentState.font,t_string);
+}
+
+Button::Button(State* t_state, sf::Vector2f t_position, sf::Vector2f t_size):
+	ClickRect(t_state, t_position, t_size),
+	m_isMouseClicked(false)
+{
+	m_btnState = BTN_IDLE;
+	m_previousState = BTN_IDLE;
+
+	m_body.setFillColor(sf::Color::White);
+	m_body.setOutlineThickness(-2);
+	m_body.setOutlineColor(sf::Color::Black);
+
+	m_textBehavior = new NoText();
 }
 
 Button::~Button()
@@ -96,13 +107,12 @@ void Button::handleEvents(sf::Event& t_event)
 void Button::draw(sf::RenderWindow& t_window)
 {
 	t_window.draw(m_body);
-	t_window.draw(m_text);
+	m_textBehavior->draw(t_window);
 }
 
 void Button::setText(std::string t_string)
 {
-	m_text.setString(t_string);
-	m_text.setPosition(sf::Vector2f(m_body.getPosition().x + (m_body.getSize().x / 2) - m_text.getGlobalBounds().width / 2, m_body.getPosition().y + (m_body.getSize().y / 2) - m_text.getGlobalBounds().height));
+	m_textBehavior->setText(m_body, t_string);
 }
 
 void Button::m_initIdle()
