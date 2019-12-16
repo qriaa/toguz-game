@@ -33,9 +33,6 @@
     <ClCompile Include="src\MenuState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ClickRect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -84,9 +81,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\MenuState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ClickRect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Button.h">

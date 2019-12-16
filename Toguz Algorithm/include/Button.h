@@ -2,16 +2,20 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
-#include "ClickRect.h"
+#include "State.h"
 #include "HasText.h"
 #include "NoText.h"
 #include <SFML/Audio.hpp>
 
 enum Button_State {BTN_IDLE = 0, BTN_HOVER, BTN_ACTIVE};
 
-class Button : public ClickRect
+class Button
 {
 protected:
+	State& m_parentState;
+
+	sf::RectangleShape m_body;
+
 	TextBehavior* m_textBehavior;
 
 	Button_State m_btnState;
@@ -32,6 +36,7 @@ public:
 
 	void setText(std::string t_string);
 
+	bool isMouseOver();
 protected:
 	virtual void m_initIdle();
 	virtual void m_initHover();
