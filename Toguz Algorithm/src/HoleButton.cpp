@@ -21,7 +21,7 @@ void HoleButton::update()
 void HoleButton::draw(sf::RenderWindow& t_window)
 {
 	t_window.draw(m_body);
-	t_window.draw(m_text);
+	m_textBehavior->draw(t_window);
 }
 
 void HoleButton::setHoleNumber(int t_number)
@@ -29,7 +29,11 @@ void HoleButton::setHoleNumber(int t_number)
 	m_holeNumber = t_number;
 }
 
-void HoleButton::m_doOnActive()
+void HoleButton::m_initActive()
 {
 	m_parentGame.makeMove(m_holeNumber);
+}
+
+void HoleButton::m_doOnActive()
+{
 }

@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\TextBehavior">
+      <UniqueIdentifier>{d3aa4d74-6958-4a7f-abf1-a40a6dd34bca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TextBehavior">
+      <UniqueIdentifier>{3bd66e4d-d0f9-4936-989c-7194d76b95ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -25,9 +31,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\MenuState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ClickRect.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Button.cpp">
@@ -54,6 +57,21 @@
     <ClCompile Include="src\TuzSlot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\DialogueBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DragBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextBehavior.cpp">
+      <Filter>Source Files\TextBehavior</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NoText.cpp">
+      <Filter>Source Files\TextBehavior</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HasText.cpp">
+      <Filter>Source Files\TextBehavior</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Application.h">
@@ -63,9 +81,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\MenuState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ClickRect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Button.h">
@@ -94,6 +109,21 @@
     </ClInclude>
     <ClInclude Include="include\TuzSlot.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DialogueBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DragBar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TextBehavior.h">
+      <Filter>Header Files\TextBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NoText.h">
+      <Filter>Header Files\TextBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HasText.h">
+      <Filter>Header Files\TextBehavior</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

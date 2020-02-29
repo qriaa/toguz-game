@@ -14,7 +14,7 @@ StateButton::~StateButton()
 {
 }
 
-void StateButton::m_doOnActive()
+void StateButton::m_initActive()
 {
 	switch (choiceMade)
 	{
