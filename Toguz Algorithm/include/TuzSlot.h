@@ -4,10 +4,11 @@
 #define TUZSLOT_H
 
 #include <SFML/Graphics.hpp>
+#include "GameObject.h"
 #include "Identifiers.h"
 
 
-class TuzSlot
+class TuzSlot : public GameObject
 {
 private:
 	GameState& m_parentGame;

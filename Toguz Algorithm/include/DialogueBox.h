@@ -2,10 +2,11 @@
 #ifndef DIALOGUEBOX_H
 #define DIALOGUEBOX_H
 
+#include "GameObject.h"
 #include "Identifiers.h"
 #include "DragBar.h"
 
-class DialogueBox
+class DialogueBox : public GameObject
 {
 private:
 	State& m_parentState;

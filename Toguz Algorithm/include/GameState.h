@@ -4,6 +4,7 @@
 #define GAMESTATE_H
 
 #include "Identifiers.h"
+#include "GameObject.h"
 #include "State.h"
 #include "StateButton.h"
 #include "Board.h"

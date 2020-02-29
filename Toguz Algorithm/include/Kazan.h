@@ -4,9 +4,10 @@
 #define KAZAN_H
 #include <SFML/Graphics.hpp>
 
+#include "GameObject.h"
 #include "Identifiers.h"
 
-class Kazan
+class Kazan : public GameObject
 {
 private:
 	GameState& m_parentGame;

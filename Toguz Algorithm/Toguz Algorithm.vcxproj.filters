@@ -72,6 +72,9 @@
     <ClCompile Include="src\HasText.cpp">
       <Filter>Source Files\TextBehavior</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Application.h">
@@ -124,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="include\HasText.h">
       <Filter>Header Files\TextBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameObject.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
