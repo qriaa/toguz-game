@@ -18,7 +18,7 @@ public:
 	~StateButton();
 
 private:
-	void m_doOnActive();
+	void m_initActive();
 };
 
 

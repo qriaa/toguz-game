@@ -10,6 +10,7 @@
 #include "HoleButton.h"
 #include "Kazan.h"
 #include "TuzSlot.h"
+#include "DialogueBox.h"
 
 class GameState : public State
 {
@@ -25,6 +26,7 @@ private:
 	TuzSlot* tuzTwo;
 
 	bool m_gameFinished;
+
 public:
 	Board m_board;
 public:

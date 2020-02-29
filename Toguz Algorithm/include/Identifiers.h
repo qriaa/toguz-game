@@ -19,5 +19,7 @@ class Kazan;
 class MenuState;
 class State;
 class StateButton;
+class DialogueBox;
+class DragBar;
 
 #endif // !IDENTIFIERS_H

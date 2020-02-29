@@ -20,6 +20,7 @@ public:
 
 	void setHoleNumber(int t_number);
 private:
+	void m_initActive();
 	void m_doOnActive();
 };
 
