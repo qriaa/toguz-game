@@ -7,7 +7,7 @@ DragBar::DragBar(State* t_parentState,DialogueBox* t_parentBox, sf::Vector2f t_p
 	m_parentBox(*t_parentBox),
 	m_hasRelativePos(false)
 {
-	m_body.setOutlineThickness(2);
+	m_body.setOutlineThickness(-1);
 }
 
 DragBar::~DragBar()

@@ -6,6 +6,7 @@
 #include "State.h"
 class DialogueBox;
 
+//TODO: FINISH
 class DragBar : public Button
 {
 private:
