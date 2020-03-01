@@ -16,17 +16,11 @@
 class GameState : public State
 {
 private:
-	StateButton* m_menuButton;
-
 	Player_Num m_activePlayer;
 	bool m_playerChanged;
 	bool m_toBeChangedFlag;
 
 	std::vector<HoleButton*> m_holes;
-	Kazan* kazanOne;
-	Kazan* kazanTwo;
-	TuzSlot* tuzOne;
-	TuzSlot* tuzTwo;
 
 	bool m_gameFinished;
 

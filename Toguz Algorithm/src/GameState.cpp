@@ -2,24 +2,24 @@
 
 GameState::GameState(Application* t_app):
 	State(*t_app, "res/wood.jpg"),
-	m_menuButton(new StateButton(this, sf::Vector2f(1920 - 300, 1080 - 200), sf::Vector2f(200,100),"Menu",CHC_goMenu)),
 	m_board(),
 	m_activePlayer(PLR_ONE),
 	m_gameFinished(false)
 {
+	createGameObject(new StateButton(this, sf::Vector2f(1920 - 300, 1080 - 200), sf::Vector2f(200, 100), "Menu", CHC_goMenu));
 	for (int i = 0; i < 9; i++)
 	{
-		m_holes.emplace_back(new HoleButton(this,sf::Vector2f(465 + 110 * i, 640), sf::Vector2f(100,100), i ));
+		createGameObject(new HoleButton(this,sf::Vector2f(465 + 110 * i, 640), sf::Vector2f(100,100), i ));
 	}
 	for (int i = 9; i > 0; i--)
 	{
-		m_holes.emplace_back(new HoleButton(this, sf::Vector2f(1345 - 110 * (9-i), 340), sf::Vector2f(100, 100), 18-i));
+		createGameObject(new HoleButton(this, sf::Vector2f(1345 - 110 * (9-i), 340), sf::Vector2f(100, 100), 18-i));
 	}
 
-	kazanOne = new Kazan(this, sf::Vector2f(575,450), sf::Vector2f(870,80), PLR_ONE);
-	kazanTwo = new Kazan(this, sf::Vector2f(465,550), sf::Vector2f(870,80), PLR_TWO);
+	createGameObject(new Kazan(this, sf::Vector2f(575,450), sf::Vector2f(870,80), PLR_ONE));
+	createGameObject(new Kazan(this, sf::Vector2f(465,550), sf::Vector2f(870,80), PLR_TWO));
 	createGameObject(new TuzSlot(this, sf::Vector2f(1355,550), sf::Vector2f(80,80), PLR_ONE));
-	tuzTwo = new TuzSlot(this, sf::Vector2f(475,450), sf::Vector2f(80,80), PLR_TWO);
+	createGameObject(new TuzSlot(this, sf::Vector2f(475,450), sf::Vector2f(80,80), PLR_TWO));
 
 }
 
@@ -30,46 +30,36 @@ GameState::~GameState()
 		delete m_holes.back();
 		m_holes.pop_back();
 	}
-	delete kazanOne;
-	kazanOne = nullptr;
-	delete kazanTwo;
-	kazanTwo = nullptr;
+	for (GameObject* object : m_gameObjects) 
+	{
+		delete object;
+	}
 }
 
 void GameState::draw(sf::RenderWindow& t_window)
 {
 	t_window.draw(m_backgroundSprite);
-	m_menuButton->draw(t_window);
 
 	for (HoleButton* hole : m_holes)
 	{
 		hole->draw(t_window);
 	}
-	kazanOne->draw(t_window);
-	kazanTwo->draw(t_window);
 	for (GameObject* object : m_gameObjects)
 	{
 		object->draw(t_window);
 	}
-	//tuzOne->draw(t_window);
-	tuzTwo->draw(t_window);
 }
 
 void GameState::handleEvents(sf::Event& t_event)
 {
-	m_menuButton->handleEvents(t_event);
-
 	for (HoleButton* hole : m_holes)
 	{
 		hole->handleEvents(t_event);
 	}
-	kazanOne->handleEvents(t_event);
-	kazanTwo->handleEvents(t_event);
 	for (GameObject* object : m_gameObjects)
 	{
 		object->handleEvents(t_event);
 	}
-	tuzTwo->handleEvents(t_event);
 }
 
 void GameState::update() //holy fuck what a mess
@@ -80,19 +70,14 @@ void GameState::update() //holy fuck what a mess
 		m_toBeChangedFlag = false;
 	}
 
-	m_menuButton->update();
-
 	for (HoleButton* hole : m_holes)
 	{
 		hole->update();
 	}
-	kazanOne->update();
-	kazanTwo->update();
 	for (GameObject* object : m_gameObjects)
 	{
 		object->update();
 	}
-	tuzTwo->update();
 	m_playerChanged = false;
 }
 

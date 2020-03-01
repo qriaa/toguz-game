@@ -11,9 +11,6 @@ class MenuState : public State
 {
 private:
 	sf::Text m_titleText;
-
-	StateButton* m_gameButton;
-	StateButton* m_quitButton;
 public:
 
 	MenuState(Application* t_app);
