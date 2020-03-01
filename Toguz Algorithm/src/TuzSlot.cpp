@@ -2,6 +2,7 @@
 #include "GameState.h"
 
 TuzSlot::TuzSlot(GameState* t_parentGame, sf::Vector2f t_position, sf::Vector2f t_size, Player_Num t_whoseTuzSlot):
+	GameObject(t_parentGame),
 	m_parentGame(*t_parentGame),
 	m_whoseTuzSlot(t_whoseTuzSlot)
 {
@@ -47,6 +48,11 @@ void TuzSlot::update()
 	if (!hasTuz)
 	{
 		m_body.setFillColor(sf::Color::White);
+	}
+
+	if (m_parentGame.hasPlayerChanged())
+	{
+		changePlayer();
 	}
 }
 

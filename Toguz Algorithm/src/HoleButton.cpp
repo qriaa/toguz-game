@@ -16,6 +16,13 @@ void HoleButton::update()
 		setText(std::to_string(m_parentGame.m_board.holes[m_holeNumber]));
 
 	Button::update();
+	if (m_parentGame.hasPlayerChanged())
+	{
+		if (m_holeNumber <= 8)
+			m_holeNumber += 9;
+		else
+			m_holeNumber -= 9;
+	}
 }
 
 void HoleButton::draw(sf::RenderWindow& t_window)

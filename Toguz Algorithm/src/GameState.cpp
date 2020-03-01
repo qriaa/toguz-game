@@ -18,7 +18,7 @@ GameState::GameState(Application* t_app):
 
 	kazanOne = new Kazan(this, sf::Vector2f(575,450), sf::Vector2f(870,80), PLR_ONE);
 	kazanTwo = new Kazan(this, sf::Vector2f(465,550), sf::Vector2f(870,80), PLR_TWO);
-	tuzOne = new TuzSlot(this, sf::Vector2f(1355,550), sf::Vector2f(80,80), PLR_ONE);
+	createGameObject(new TuzSlot(this, sf::Vector2f(1355,550), sf::Vector2f(80,80), PLR_ONE));
 	tuzTwo = new TuzSlot(this, sf::Vector2f(475,450), sf::Vector2f(80,80), PLR_TWO);
 
 }
@@ -47,7 +47,11 @@ void GameState::draw(sf::RenderWindow& t_window)
 	}
 	kazanOne->draw(t_window);
 	kazanTwo->draw(t_window);
-	tuzOne->draw(t_window);
+	for (GameObject* object : m_gameObjects)
+	{
+		object->draw(t_window);
+	}
+	//tuzOne->draw(t_window);
 	tuzTwo->draw(t_window);
 }
 
@@ -61,12 +65,21 @@ void GameState::handleEvents(sf::Event& t_event)
 	}
 	kazanOne->handleEvents(t_event);
 	kazanTwo->handleEvents(t_event);
-	tuzOne->handleEvents(t_event);
+	for (GameObject* object : m_gameObjects)
+	{
+		object->handleEvents(t_event);
+	}
 	tuzTwo->handleEvents(t_event);
 }
 
-void GameState::update()
+void GameState::update() //holy fuck what a mess
 {
+	if (m_toBeChangedFlag == true)
+	{
+		m_playerChanged = true;
+		m_toBeChangedFlag = false;
+	}
+
 	m_menuButton->update();
 
 	for (HoleButton* hole : m_holes)
@@ -75,8 +88,12 @@ void GameState::update()
 	}
 	kazanOne->update();
 	kazanTwo->update();
-	tuzOne->update();
+	for (GameObject* object : m_gameObjects)
+	{
+		object->update();
+	}
 	tuzTwo->update();
+	m_playerChanged = false;
 }
 
 void GameState::init()
@@ -141,6 +158,16 @@ bool GameState::makeMove(int t_hole)
 	return true;
 }
 
+bool GameState::hasPlayerChanged()
+{
+	return m_playerChanged;
+}
+
+Player_Num GameState::getActivePlayer()
+{
+	return m_activePlayer;
+}
+
 
 void GameState::m_checkHole(int t_hole)
 {
@@ -187,32 +214,17 @@ void GameState::m_changeActivePlayer()
 {
 	if (m_activePlayer == PLR_ONE)
 	{
-		for (int i=0; i < 9;i++)
-		{
-			m_holes[i]->setHoleNumber(i+9);
-		}
-		for (int i = 0; i < 9; i++)
-		{
-			m_holes[9+i]->setHoleNumber(i);
-		}
 		m_activePlayer = PLR_TWO;
+		m_toBeChangedFlag = true;
 	}
 	else if (m_activePlayer == PLR_TWO)
 	{
-		for (int i = 0; i < 18; i++)
-		{
-			m_holes[i]->setHoleNumber(i);
-		}
 		m_activePlayer = PLR_ONE;
+		m_toBeChangedFlag = true;
 	}
-
-	kazanOne->changePlayer();
-	kazanTwo->changePlayer();
-	tuzOne->changePlayer();
-	tuzTwo->changePlayer();
 }
 
-void GameState::m_checkForVictory() // TODO: add draw
+void GameState::m_checkForVictory()
 {
 	if (m_board.kazanOne > 81)
 	{

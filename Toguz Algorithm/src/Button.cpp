@@ -5,9 +5,10 @@
 
 
 Button::Button(State* t_state, sf::Vector2f t_position, sf::Vector2f t_size, std::string t_string):
-	m_parentState(*t_state),
+	GameObject(t_state),
 	m_isMouseClicked(false)
 {
+	m_parentState = t_state;
 	m_btnState = BTN_IDLE;
 	m_previousState = BTN_IDLE;
 
@@ -17,13 +18,14 @@ Button::Button(State* t_state, sf::Vector2f t_position, sf::Vector2f t_size, std
 	m_body.setOutlineThickness(-2);
 	m_body.setOutlineColor(sf::Color::Black);
 
-	m_textBehavior = new HasText(m_body,m_parentState.font,t_string);
+	m_textBehavior = new HasText(m_body,m_parentState->font,t_string);
 }
 
 Button::Button(State* t_state, sf::Vector2f t_position, sf::Vector2f t_size):
-	m_parentState(*t_state),
+	GameObject(t_state),
 	m_isMouseClicked(false)
 {
+	m_parentState = t_state;
 	m_btnState = BTN_IDLE;
 	m_previousState = BTN_IDLE;
 
@@ -121,8 +123,8 @@ void Button::setText(std::string t_string)
 
 bool Button::isMouseOver()
 {
-	sf::Vector2i initPos = sf::Mouse::getPosition(m_parentState.getApp().window);
-	sf::Vector2f mousePos = m_parentState.getApp().window.mapPixelToCoords(initPos);
+	sf::Vector2i initPos = sf::Mouse::getPosition(m_parentState->getApp().window);
+	sf::Vector2f mousePos = m_parentState->getApp().window.mapPixelToCoords(initPos);
 	sf::Vector2f bodyPos = m_body.getPosition();
 	sf::Vector2f bodySize = m_body.getSize();
 

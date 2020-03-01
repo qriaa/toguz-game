@@ -9,8 +9,6 @@
 class DialogueBox : public GameObject
 {
 private:
-	State& m_parentState;
-
 	sf::RectangleShape m_mainBox;
 	DragBar m_dragBar;
 

@@ -2,6 +2,7 @@
 #include "Application.h"
 
 Kazan::Kazan(GameState* t_parentGame, sf::Vector2f t_position, sf::Vector2f t_size, Player_Num t_whoseKazan) :
+	GameObject(t_parentGame),
 	m_parentGame(*t_parentGame),
 	m_whoseKazan(t_whoseKazan)
 {
@@ -43,6 +44,10 @@ void Kazan::update()
 		break;
 	}
 	m_text.setPosition(sf::Vector2f(m_body.getPosition().x + (m_body.getSize().x / 2) - m_text.getGlobalBounds().width / 2, m_body.getPosition().y + (m_body.getSize().y / 2) - m_text.getGlobalBounds().height));
+	if (m_parentGame.hasPlayerChanged())
+	{
+		changePlayer();
+	}
 }
 
 void Kazan::handleEvents(sf::Event& t_event)

@@ -19,6 +19,8 @@ private:
 	StateButton* m_menuButton;
 
 	Player_Num m_activePlayer;
+	bool m_playerChanged;
+	bool m_toBeChangedFlag;
 
 	std::vector<HoleButton*> m_holes;
 	Kazan* kazanOne;
@@ -43,6 +45,10 @@ public:
 	void init();
 
 	bool makeMove(int t_hole);
+
+	bool hasPlayerChanged();
+
+	Player_Num getActivePlayer();
 
 private:
 	void m_checkHole(int t_hole);

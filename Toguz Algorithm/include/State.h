@@ -3,6 +3,7 @@
 #define STATE_H
 #include <SFML/Graphics.hpp>
 
+class GameObject;
 class Application;
 
 class State
@@ -12,6 +13,8 @@ protected:
 
 	sf::Texture m_backgroundTexture;
 	sf::Sprite m_backgroundSprite;
+
+	std::vector<GameObject*> m_gameObjects;
 public:
 	sf::Font font;
 
@@ -29,6 +32,10 @@ public:
 	virtual void update() = 0;
 
 	virtual void init() = 0;
+
+	void destroyGameObject(GameObject* t_destroyed); //todo
+
+	void createGameObject(GameObject* t_created);
 
 	Application& getApp();
 };

@@ -3,13 +3,16 @@
 #define GAMEOBJECT_H
 
 #include <SFML/Graphics.hpp>
+#include "Identifiers.h"
+#include "State.h"
 
 class GameObject
 {
-private:
+protected:
+	State* m_parentState;
 
 public:
-	GameObject();
+	GameObject(State* t_state);
 	~GameObject();
 
 
@@ -20,6 +23,8 @@ public:
 	virtual void draw(sf::RenderWindow&);
 
 	virtual void init();
+
+	void kill();
 };
 
 #endif
