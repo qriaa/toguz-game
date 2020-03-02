@@ -21,14 +21,14 @@ void StateButton::m_initActive()
 	case CHC_none:
 		break;
 	case CHC_quit:
-		Application::g_app->quit();
+		Application::getApp()->quit();
 		break;
 	case CHC_goMenu:
-		Application::g_app->stateManager.addState(new MenuState(Application::g_app), true);
+		Application::getApp()->stateManager.addState(new MenuState(Application::getApp()), true);
 		stateChanged = true;
 		break;
 	case CHC_goGame:
-		Application::g_app->stateManager.addState(new GameState(Application::g_app), true);
+		Application::getApp()->stateManager.addState(new GameState(Application::getApp()), true);
 		stateChanged = true;
 		break;
 	}

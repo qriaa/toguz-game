@@ -16,10 +16,10 @@ private:
 	bool m_isRunning;
 	sf::Uint32 m_updateRate;
 
+	static Application* m_app;
 
+	Application();
 public:
-	static Application* g_app;
-
 	StateManager stateManager;
 
 	const sf::Vector2i WINDOW_SIZE;
@@ -27,11 +27,9 @@ public:
 	
 	sf::View view;
 
-
-
-
-	Application();
 	~Application();
+
+	static Application* getApp();
 
 	void run();
 

@@ -1,15 +1,23 @@
 #include "Application.h"
 
-Application* Application::g_app = NULL;
+Application* Application::m_app = new Application();
 
 Application::Application():
-	stateManager(this), m_updateRate(1000.0f / 20.0f), m_isRunning(true), WINDOW_SIZE(sf::Vector2i(1920,1080))
+	stateManager(this),
+	m_updateRate(1000.0f / 20.0f),
+	m_isRunning(true),
+	WINDOW_SIZE(sf::Vector2i(1920,1080))
 {
-	g_app = this;
+	m_app = this;
 }
 
 Application::~Application()
 {
+}
+
+Application* Application::getApp()
+{
+	return m_app;
 }
 
 void Application::run()
