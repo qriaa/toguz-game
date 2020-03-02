@@ -4,6 +4,8 @@ GameState::GameState(Application* t_app):
 	State(*t_app, "res/wood.jpg"),
 	m_board(),
 	m_activePlayer(PLR_ONE),
+	m_playerChanged(false),
+	m_toBeChangedFlag(false),
 	m_gameFinished(false)
 {
 	createGameObject(new StateButton(this, sf::Vector2f(1920 - 300, 1080 - 200), sf::Vector2f(200, 100), "Menu", CHC_goMenu));
@@ -29,10 +31,6 @@ GameState::~GameState()
 	{
 		delete m_holes.back();
 		m_holes.pop_back();
-	}
-	for (GameObject* object : m_gameObjects) 
-	{
-		delete object;
 	}
 }
 

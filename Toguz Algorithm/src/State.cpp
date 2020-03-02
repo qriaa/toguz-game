@@ -14,6 +14,11 @@ State::State(Application& t_app, std::string t_backgroundTexturePath):
 
 State::~State()
 {
+	while (!(m_gameObjects.empty()))
+	{
+		delete m_gameObjects.back();
+		m_gameObjects.pop_back();
+	}
 }
 
 void State::pause()

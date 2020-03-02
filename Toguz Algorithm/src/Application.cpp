@@ -4,7 +4,7 @@ Application* Application::m_app = new Application();
 
 Application::Application():
 	stateManager(this),
-	m_updateRate(1000.0f / 20.0f),
+	m_updateRate(1000.0f / 60.0f),
 	m_isRunning(true),
 	WINDOW_SIZE(sf::Vector2i(1920,1080))
 {

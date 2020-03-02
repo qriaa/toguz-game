@@ -145,6 +145,7 @@
     <ClCompile Include="src\Board.cpp" />
     <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\DialogueBox.cpp" />
+    <ClCompile Include="src\DialogueCloseButton.cpp" />
     <ClCompile Include="src\DragBar.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\GameState.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="include\Board.h" />
     <ClInclude Include="include\Button.h" />
     <ClInclude Include="include\DialogueBox.h" />
+    <ClInclude Include="include\DialogueCloseButton.h" />
     <ClInclude Include="include\DragBar.h" />
     <ClInclude Include="include\GameObject.h" />
     <ClInclude Include="include\GameState.h" />

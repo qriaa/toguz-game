@@ -1,10 +1,12 @@
 #include "MenuState.h"
+#include "DialogueBox.h"
 
 MenuState::MenuState(Application* t_app):
 	State(*t_app, "res/wood.jpg")
 {
 	createGameObject(new StateButton(this, sf::Vector2f(100, 1080 / 3), sf::Vector2f(300, 100), "Play", CHC_goGame));
 	createGameObject(new StateButton(this, sf::Vector2f(100, 1080 / 3 * 2), sf::Vector2f(300, 100), "Quit", CHC_quit));
+	createGameObject(new DialogueBox(this, sf::Vector2f(100, 100)));
 
 	m_titleText.setFont(font);
 	m_titleText.setFillColor(sf::Color::White);
@@ -15,10 +17,6 @@ MenuState::MenuState(Application* t_app):
 
 MenuState::~MenuState()
 {
-	for (GameObject* object : m_gameObjects)
-	{
-		object->kill();
-	}
 }
 
 void MenuState::draw(sf::RenderWindow& t_window)

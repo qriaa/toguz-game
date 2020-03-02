@@ -9,6 +9,7 @@ class TextBehavior
 public:
 	virtual void init(sf::RectangleShape& t_body, sf::Font& t_font, std::string t_string) = 0;
 	virtual void setText(sf::RectangleShape& t_body, std::string t_string) = 0;
+	virtual void setSize(int t_size) = 0;
 	virtual void draw(sf::RenderWindow& t_window) = 0;
 };
 
