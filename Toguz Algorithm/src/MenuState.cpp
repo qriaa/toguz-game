@@ -6,7 +6,6 @@ MenuState::MenuState(Application* t_app):
 {
 	createGameObject(new StateButton(this, sf::Vector2f(100, 1080 / 3), sf::Vector2f(300, 100), "Play", CHC_goGame));
 	createGameObject(new StateButton(this, sf::Vector2f(100, 1080 / 3 * 2), sf::Vector2f(300, 100), "Quit", CHC_quit));
-	createGameObject(new DialogueBox(this, sf::Vector2f(100, 100)));
 
 	m_titleText.setFont(font);
 	m_titleText.setFillColor(sf::Color::White);

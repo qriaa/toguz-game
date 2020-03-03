@@ -13,7 +13,7 @@ protected:
 
 public:
 	GameObject(State* t_state);
-	~GameObject();
+	virtual ~GameObject();
 
 
 	virtual void update();

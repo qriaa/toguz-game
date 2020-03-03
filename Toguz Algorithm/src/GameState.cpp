@@ -22,7 +22,6 @@ GameState::GameState(Application* t_app):
 	createGameObject(new Kazan(this, sf::Vector2f(465,550), sf::Vector2f(870,80), PLR_TWO));
 	createGameObject(new TuzSlot(this, sf::Vector2f(1355,550), sf::Vector2f(80,80), PLR_ONE));
 	createGameObject(new TuzSlot(this, sf::Vector2f(475,450), sf::Vector2f(80,80), PLR_TWO));
-
 }
 
 GameState::~GameState()
@@ -225,7 +224,5 @@ void GameState::m_checkForVictory()
 
 void GameState::m_endGame(Player_Num t_victoriousPlayer) // TODO: add game finish window
 {
-
-
-
+	createGameObject(new GameFinishBox(this, &m_board, t_victoriousPlayer));
 }

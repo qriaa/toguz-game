@@ -35,6 +35,8 @@ public:
 
 	void setText(std::string t_string);
 
+	void setPosition(sf::Vector2f t_pos);
+
 	bool isMouseOver();
 protected:
 	virtual void m_initIdle();

@@ -22,7 +22,7 @@ void DragBar::update()
 		sf::Vector2f mousePos = m_parentState->getApp().window.mapPixelToCoords(initPos);
 		if (!m_hasRelativePos)
 		{
-			m_mouseRelativePos = mousePos - m_parentBox.m_mainBox.getPosition();
+			m_mouseRelativePos = mousePos - m_parentBox.getPosition();
 			m_hasRelativePos = true;
 		}
 
@@ -58,7 +58,7 @@ void DragBar::m_initActive()
 {
 	sf::Vector2i initPos = sf::Mouse::getPosition(m_parentState->getApp().window);
 	sf::Vector2f mousePos = m_parentState->getApp().window.mapPixelToCoords(initPos);
-	m_mouseRelativePos = mousePos - m_parentBox.m_mainBox.getPosition();
+	m_mouseRelativePos = mousePos - m_parentBox.getPosition();
 	m_hasRelativePos = true;
 }
 

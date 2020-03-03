@@ -19,6 +19,18 @@
     <Filter Include="Source Files\TextBehavior">
       <UniqueIdentifier>{3bd66e4d-d0f9-4936-989c-7194d76b95ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\DialogueBox">
+      <UniqueIdentifier>{b23116dd-8b3f-4cd6-b4a0-afe69ad100bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DialogueBox">
+      <UniqueIdentifier>{babd6710-2998-4e31-8877-ca1717c17c6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameState">
+      <UniqueIdentifier>{4e5cec54-e635-4403-bccd-f13aa11998eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameState">
+      <UniqueIdentifier>{6de99b0c-5a8d-4539-ade8-b81d424fb52d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,31 +48,10 @@
     <ClCompile Include="src\Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\StateButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\StateManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Board.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\HoleButton.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Kazan.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TuzSlot.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DialogueBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DragBar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\TextBehavior.cpp">
@@ -75,8 +66,32 @@
     <ClCompile Include="src\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\DialogueBox.cpp">
+      <Filter>Source Files\DialogueBox</Filter>
+    </ClCompile>
     <ClCompile Include="src\DialogueCloseButton.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\DialogueBox</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DragBar.cpp">
+      <Filter>Source Files\DialogueBox</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Board.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameState.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HoleButton.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Kazan.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TuzSlot.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameFinishBox.cpp">
+      <Filter>Source Files\GameState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -92,34 +107,13 @@
     <ClInclude Include="include\Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\GameState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\StateButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\StateManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Board.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\HoleButton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Kazan.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\Identifiers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\TuzSlot.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\DialogueBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\DragBar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\TextBehavior.h">
@@ -134,8 +128,32 @@
     <ClInclude Include="include\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\DialogueBox.h">
+      <Filter>Header Files\DialogueBox</Filter>
+    </ClInclude>
     <ClInclude Include="include\DialogueCloseButton.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\DialogueBox</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DragBar.h">
+      <Filter>Header Files\DialogueBox</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameState.h">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HoleButton.h">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Kazan.h">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TuzSlot.h">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Board.h">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameFinishBox.h">
+      <Filter>Header Files\GameState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -11,7 +11,7 @@
 #include "HoleButton.h"
 #include "Kazan.h"
 #include "TuzSlot.h"
-#include "DialogueBox.h"
+#include "GameFinishBox.h"
 
 class GameState : public State
 {

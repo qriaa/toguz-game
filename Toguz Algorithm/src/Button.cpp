@@ -121,6 +121,12 @@ void Button::setText(std::string t_string)
 	m_textBehavior->setText(m_body, t_string);
 }
 
+void Button::setPosition(sf::Vector2f t_pos)
+{
+	m_body.setPosition(t_pos);
+	m_textBehavior->setPosition(m_body, t_pos);
+}
+
 bool Button::isMouseOver()
 {
 	sf::Vector2i initPos = sf::Mouse::getPosition(m_parentState->getApp().window);

@@ -9,7 +9,7 @@
 
 class DialogueBox : public GameObject
 {
-private:
+protected:
 	sf::RectangleShape m_mainBox;
 	std::vector<GameObject*> m_gameObjects;
 	DragBar* m_dragBarPtr = nullptr;
@@ -17,27 +17,25 @@ private:
 public:
 	DialogueBox(State* t_parentState, sf::Vector2f t_pos, sf::Vector2f t_size);
 	DialogueBox(State* t_parentState, sf::Vector2f t_size);
-	~DialogueBox();
+	virtual ~DialogueBox();
 
 	void createGameObject(GameObject*);
 
 	void destroyGameObject(GameObject*);
 
-	void draw(sf::RenderWindow& window);
+	virtual void draw(sf::RenderWindow& window);
 
-	void handleEvents(sf::Event&);
+	virtual void handleEvents(sf::Event&);
 
-	void update();
+	virtual void update();
 
-	void init();
+	virtual void init();
 
-	void setPosition(sf::Vector2f);
+	virtual void setPosition(sf::Vector2f);
 
 	sf::Vector2f getPosition();
 
 	sf::Vector2f getSize();
-
-	friend class DragBar;
 };
 
 

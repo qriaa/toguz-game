@@ -33,7 +33,9 @@ public:
 
 	virtual void init() = 0;
 
-	void destroyGameObject(GameObject* t_destroyed); //todo
+	/* do NOT use in loops deleting all objects (idk why doesnt that work)
+	weird vector and pointer stuff (possibly reallocation) */
+	void destroyGameObject(GameObject* t_destroyed);
 
 	void createGameObject(GameObject* t_created);
 
