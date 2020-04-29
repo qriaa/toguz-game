@@ -114,7 +114,7 @@ void Application::updateAspectRatio()
 		float unit = newSize.y / 9;
 
 		float viewFactor = (unit * 16) / newSize.x;
-		float barFactor = (abs(1 - viewFactor)) / 2;
+		float barFactor = (1 - viewFactor) / 2;
 
 		view.setViewport(sf::FloatRect(barFactor, 0.f, viewFactor, 1.f));
 	}
@@ -124,7 +124,7 @@ void Application::updateAspectRatio()
 		float unit = newSize.x / 16;
 
 		float viewFactor = (unit * 9) / newSize.y;
-		float barFactor = (abs(1 - viewFactor)) / 2;
+		float barFactor = (1 - viewFactor) / 2;
 
 		view.setViewport(sf::FloatRect(0.f,barFactor,1.f,viewFactor));
 	}
