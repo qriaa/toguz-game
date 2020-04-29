@@ -1,4 +1,4 @@
-#include "..\include\GameObject.h"
+#include "GameObject.h"
 
 GameObject::GameObject(State* t_state):
 	m_parentState(t_state)

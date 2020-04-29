@@ -1,4 +1,4 @@
-#include "..\include\TuzSlot.h"
+#include "TuzSlot.h"
 #include "GameState.h"
 
 TuzSlot::TuzSlot(GameState* t_parentGame, sf::Vector2f t_position, sf::Vector2f t_size, Player_Num t_whoseTuzSlot):

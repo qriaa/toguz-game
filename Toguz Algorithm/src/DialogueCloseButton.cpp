@@ -1,4 +1,4 @@
-#include "..\include\DialogueCloseButton.h"
+#include "DialogueCloseButton.h"
 #include "DialogueBox.h"
 
 DialogueCloseButton::DialogueCloseButton(State* t_state,DialogueBox* t_parentBox):

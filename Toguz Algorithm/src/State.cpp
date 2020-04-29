@@ -9,7 +9,7 @@ State::State(Application& t_app, std::string t_backgroundTexturePath):
 	m_backgroundSprite.setTexture(m_backgroundTexture);
 	m_backgroundSprite.setTextureRect(sf::IntRect(sf::Vector2i(0, 0), sf::Vector2i(1920, 1080)));
 
-	font.loadFromFile("res/comic.ttf");
+	font.loadFromFile("Toguz Algorithm/res/comic.ttf");
 }
 
 State::~State()

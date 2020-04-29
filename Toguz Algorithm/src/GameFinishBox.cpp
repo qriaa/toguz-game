@@ -1,4 +1,4 @@
-#include "..\include\GameFinishBox.h"
+#include "GameFinishBox.h"
 
 GameFinishBox::GameFinishBox(State* t_parentState, Board* t_board, Player_Num t_victoriousPlayer):
 	DialogueBox(t_parentState, sf::Vector2f(500,500)),
