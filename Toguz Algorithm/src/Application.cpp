@@ -1,6 +1,6 @@
 #include "Application.h"
 
-Application* Application::m_app = new Application();
+Application* Application::m_app = nullptr;
 
 Application::Application():
 	stateManager(this),
@@ -17,6 +17,10 @@ Application::~Application()
 
 Application* Application::getApp()
 {
+	if(m_app == nullptr)
+	{
+		m_app = new Application();
+	}
 	return m_app;
 }
 
