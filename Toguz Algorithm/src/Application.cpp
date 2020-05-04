@@ -1,15 +1,27 @@
 #include "Application.h"
 
-Application* Application::g_app = NULL;
+Application* Application::m_app = nullptr;
 
 Application::Application():
-	stateManager(this), m_updateRate(1000.0f / 20.0f), m_isRunning(true), WINDOW_SIZE(sf::Vector2i(1920,1080))
+	stateManager(this),
+	m_updateRate(1000.0f / 60.0f),
+	m_isRunning(true),
+	WINDOW_SIZE(sf::Vector2i(1920,1080))
 {
-	g_app = this;
+	m_app = this;
 }
 
 Application::~Application()
 {
+}
+
+Application* Application::getApp()
+{
+	if(m_app == nullptr)
+	{
+		m_app = new Application();
+	}
+	return m_app;
 }
 
 void Application::run()
@@ -37,6 +49,8 @@ void Application::appLoop()
 
 	while (m_isRunning && window.isOpen())
 	{
+		stateManager.getActiveState()->cleanupObjects();
+		stateManager.updateStates();
 		processInput(stateManager.getActiveState());
 		sf::Int32 updateTime = updateClock.getElapsedTime().asMilliseconds();
 
@@ -46,7 +60,6 @@ void Application::appLoop()
 
 			updateNext += m_updateRate;
 		}
-		stateManager.updateStates();
 		window.clear(sf::Color::Black);
 		window.setView(view);
 		stateManager.getActiveState()->draw(window);
@@ -102,7 +115,7 @@ void Application::updateAspectRatio()
 		float unit = newSize.y / 9;
 
 		float viewFactor = (unit * 16) / newSize.x;
-		float barFactor = (abs(1 - viewFactor)) / 2;
+		float barFactor = (1 - viewFactor) / 2;
 
 		view.setViewport(sf::FloatRect(barFactor, 0.f, viewFactor, 1.f));
 	}
@@ -112,7 +125,7 @@ void Application::updateAspectRatio()
 		float unit = newSize.x / 16;
 
 		float viewFactor = (unit * 9) / newSize.y;
-		float barFactor = (abs(1 - viewFactor)) / 2;
+		float barFactor = (1 - viewFactor) / 2;
 
 		view.setViewport(sf::FloatRect(0.f,barFactor,1.f,viewFactor));
 	}

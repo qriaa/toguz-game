@@ -5,9 +5,10 @@
 
 
 Button::Button(State* t_state, sf::Vector2f t_position, sf::Vector2f t_size, std::string t_string):
-	m_parentState(*t_state),
+	GameObject(t_state),
 	m_isMouseClicked(false)
 {
+	m_parentState = t_state;
 	m_btnState = BTN_IDLE;
 	m_previousState = BTN_IDLE;
 
@@ -17,13 +18,14 @@ Button::Button(State* t_state, sf::Vector2f t_position, sf::Vector2f t_size, std
 	m_body.setOutlineThickness(-2);
 	m_body.setOutlineColor(sf::Color::Black);
 
-	m_textBehavior = new HasText(m_body,m_parentState.font,t_string);
+	m_textBehavior = new HasText(m_body,m_parentState->font,t_string);
 }
 
 Button::Button(State* t_state, sf::Vector2f t_position, sf::Vector2f t_size):
-	m_parentState(*t_state),
+	GameObject(t_state),
 	m_isMouseClicked(false)
 {
+	m_parentState = t_state;
 	m_btnState = BTN_IDLE;
 	m_previousState = BTN_IDLE;
 
@@ -54,6 +56,21 @@ void Button::update()
 		}
 	}
 
+	switch (m_btnState)
+	{
+	case BTN_IDLE:
+		m_doOnIdle();
+		break;
+
+	case BTN_HOVER:
+		m_doOnHover();
+		break;
+
+	case BTN_ACTIVE:
+		m_doOnActive();
+		break;
+	}
+
 	if (m_previousState != m_btnState)
 	{
 		switch (m_btnState)
@@ -70,21 +87,6 @@ void Button::update()
 			m_initActive();
 			break;
 		}
-	}
-
-	switch (m_btnState)
-	{
-	case BTN_IDLE:
-		m_doOnIdle();
-		break;
-
-	case BTN_HOVER:
-		m_doOnHover();
-		break;
-
-	case BTN_ACTIVE:
-		m_doOnActive();
-		break;
 	}
 
 	m_previousState = m_btnState;
@@ -119,10 +121,16 @@ void Button::setText(std::string t_string)
 	m_textBehavior->setText(m_body, t_string);
 }
 
+void Button::setPosition(sf::Vector2f t_pos)
+{
+	m_body.setPosition(t_pos);
+	m_textBehavior->setPosition(m_body, t_pos);
+}
+
 bool Button::isMouseOver()
 {
-	sf::Vector2i initPos = sf::Mouse::getPosition(m_parentState.getApp().window);
-	sf::Vector2f mousePos = m_parentState.getApp().window.mapPixelToCoords(initPos);
+	sf::Vector2i initPos = sf::Mouse::getPosition(m_parentState->getApp().window);
+	sf::Vector2f mousePos = m_parentState->getApp().window.mapPixelToCoords(initPos);
 	sf::Vector2f bodyPos = m_body.getPosition();
 	sf::Vector2f bodySize = m_body.getSize();
 

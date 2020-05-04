@@ -1,82 +1,57 @@
 #include "GameState.h"
+#include "ObjectManager.h"
 
 GameState::GameState(Application* t_app):
-	State(*t_app, "res/wood.jpg"),
-	m_menuButton(new StateButton(this, sf::Vector2f(1920 - 300, 1080 - 200), sf::Vector2f(200,100),"Menu",CHC_goMenu)),
+	State(*t_app, "Toguz Algorithm/res/wood.jpg"),
 	m_board(),
 	m_activePlayer(PLR_ONE),
+	m_playerChanged(false),
+	m_toBeChangedFlag(false),
 	m_gameFinished(false)
 {
+	createGameObject(new StateButton(this, sf::Vector2f(1920 - 300, 1080 - 200), sf::Vector2f(200, 100), "Menu", CHC_goMenu));
 	for (int i = 0; i < 9; i++)
 	{
-		m_holes.emplace_back(new HoleButton(this,sf::Vector2f(465 + 110 * i, 640), sf::Vector2f(100,100), i ));
+		createGameObject(new HoleButton(this,sf::Vector2f(465 + 110 * i, 640), sf::Vector2f(100,100), i ));
 	}
 	for (int i = 9; i > 0; i--)
 	{
-		m_holes.emplace_back(new HoleButton(this, sf::Vector2f(1345 - 110 * (9-i), 340), sf::Vector2f(100, 100), 18-i));
+		createGameObject(new HoleButton(this, sf::Vector2f(1345 - 110 * (9-i), 340), sf::Vector2f(100, 100), 18-i));
 	}
 
-	kazanOne = new Kazan(this, sf::Vector2f(575,450), sf::Vector2f(870,80), PLR_ONE);
-	kazanTwo = new Kazan(this, sf::Vector2f(465,550), sf::Vector2f(870,80), PLR_TWO);
-	tuzOne = new TuzSlot(this, sf::Vector2f(1355,550), sf::Vector2f(80,80), PLR_ONE);
-	tuzTwo = new TuzSlot(this, sf::Vector2f(475,450), sf::Vector2f(80,80), PLR_TWO);
-
+	createGameObject(new Kazan(this, sf::Vector2f(575,450), sf::Vector2f(870,80), PLR_ONE));
+	createGameObject(new Kazan(this, sf::Vector2f(465,550), sf::Vector2f(870,80), PLR_TWO));
+	createGameObject(new TuzSlot(this, sf::Vector2f(1355,550), sf::Vector2f(80,80), PLR_ONE));
+	createGameObject(new TuzSlot(this, sf::Vector2f(475,450), sf::Vector2f(80,80), PLR_TWO));
 }
 
 GameState::~GameState()
 {
-	while (!(m_holes.empty()))
-	{
-		delete m_holes.back();
-		m_holes.pop_back();
-	}
-	delete kazanOne;
-	kazanOne = nullptr;
-	delete kazanTwo;
-	kazanTwo = nullptr;
 }
 
 void GameState::draw(sf::RenderWindow& t_window)
 {
 	t_window.draw(m_backgroundSprite);
-	m_menuButton->draw(t_window);
 
-	for (HoleButton* hole : m_holes)
-	{
-		hole->draw(t_window);
-	}
-	kazanOne->draw(t_window);
-	kazanTwo->draw(t_window);
-	tuzOne->draw(t_window);
-	tuzTwo->draw(t_window);
+	m_objectManager->drawGameObjects(t_window);
 }
 
 void GameState::handleEvents(sf::Event& t_event)
 {
-	m_menuButton->handleEvents(t_event);
-
-	for (HoleButton* hole : m_holes)
-	{
-		hole->handleEvents(t_event);
-	}
-	kazanOne->handleEvents(t_event);
-	kazanTwo->handleEvents(t_event);
-	tuzOne->handleEvents(t_event);
-	tuzTwo->handleEvents(t_event);
+	m_objectManager->handleEventsGameObjects(t_event);
 }
 
-void GameState::update()
+void GameState::update() //holy fuck what a mess
 {
-	m_menuButton->update();
-
-	for (HoleButton* hole : m_holes)
+	if (m_toBeChangedFlag == true)
 	{
-		hole->update();
+		m_playerChanged = true;
+		m_toBeChangedFlag = false;
 	}
-	kazanOne->update();
-	kazanTwo->update();
-	tuzOne->update();
-	tuzTwo->update();
+
+	m_objectManager->updateGameObjects();
+
+	m_playerChanged = false;
 }
 
 void GameState::init()
@@ -141,6 +116,16 @@ bool GameState::makeMove(int t_hole)
 	return true;
 }
 
+bool GameState::hasPlayerChanged()
+{
+	return m_playerChanged;
+}
+
+Player_Num GameState::getActivePlayer()
+{
+	return m_activePlayer;
+}
+
 
 void GameState::m_checkHole(int t_hole)
 {
@@ -187,32 +172,17 @@ void GameState::m_changeActivePlayer()
 {
 	if (m_activePlayer == PLR_ONE)
 	{
-		for (int i=0; i < 9;i++)
-		{
-			m_holes[i]->setHoleNumber(i+9);
-		}
-		for (int i = 0; i < 9; i++)
-		{
-			m_holes[9+i]->setHoleNumber(i);
-		}
 		m_activePlayer = PLR_TWO;
+		m_toBeChangedFlag = true;
 	}
 	else if (m_activePlayer == PLR_TWO)
 	{
-		for (int i = 0; i < 18; i++)
-		{
-			m_holes[i]->setHoleNumber(i);
-		}
 		m_activePlayer = PLR_ONE;
+		m_toBeChangedFlag = true;
 	}
-
-	kazanOne->changePlayer();
-	kazanTwo->changePlayer();
-	tuzOne->changePlayer();
-	tuzTwo->changePlayer();
 }
 
-void GameState::m_checkForVictory() // TODO: add draw
+void GameState::m_checkForVictory()
 {
 	if (m_board.kazanOne > 81)
 	{
@@ -230,7 +200,5 @@ void GameState::m_checkForVictory() // TODO: add draw
 
 void GameState::m_endGame(Player_Num t_victoriousPlayer) // TODO: add game finish window
 {
-
-
-
+	createGameObject(new GameFinishBox(this, &m_board, t_victoriousPlayer));
 }

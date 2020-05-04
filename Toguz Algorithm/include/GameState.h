@@ -4,26 +4,21 @@
 #define GAMESTATE_H
 
 #include "Identifiers.h"
+#include "GameObject.h"
 #include "State.h"
 #include "StateButton.h"
 #include "Board.h"
 #include "HoleButton.h"
 #include "Kazan.h"
 #include "TuzSlot.h"
-#include "DialogueBox.h"
+#include "GameFinishBox.h"
 
 class GameState : public State
 {
 private:
-	StateButton* m_menuButton;
-
 	Player_Num m_activePlayer;
-
-	std::vector<HoleButton*> m_holes;
-	Kazan* kazanOne;
-	Kazan* kazanTwo;
-	TuzSlot* tuzOne;
-	TuzSlot* tuzTwo;
+	bool m_playerChanged;
+	bool m_toBeChangedFlag;
 
 	bool m_gameFinished;
 
@@ -42,6 +37,10 @@ public:
 	void init();
 
 	bool makeMove(int t_hole);
+
+	bool hasPlayerChanged();
+
+	Player_Num getActivePlayer();
 
 private:
 	void m_checkHole(int t_hole);

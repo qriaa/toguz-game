@@ -2,9 +2,7 @@
 
 int main()
 {
-	Application App;
-
-	App.run();
+	Application::getApp()->run();
 
 	return 0;
 }

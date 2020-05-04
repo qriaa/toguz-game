@@ -2,33 +2,40 @@
 #ifndef DIALOGUEBOX_H
 #define DIALOGUEBOX_H
 
+#include "GameObject.h"
 #include "Identifiers.h"
 #include "DragBar.h"
+#include "DialogueCloseButton.h"
 
-class DialogueBox
+class DialogueBox : public GameObject
 {
-private:
-	State& m_parentState;
-
+protected:
 	sf::RectangleShape m_mainBox;
-	DragBar m_dragBar;
-
+	std::vector<GameObject*> m_gameObjects;
+	DragBar* m_dragBarPtr = nullptr;
+	DialogueCloseButton* m_dialogueClosePtr = nullptr;
 public:
 	DialogueBox(State* t_parentState, sf::Vector2f t_pos, sf::Vector2f t_size);
 	DialogueBox(State* t_parentState, sf::Vector2f t_size);
-	~DialogueBox();
+	virtual ~DialogueBox();
 
-	void draw(sf::RenderWindow& window);
+	void createGameObject(GameObject*);
 
-	void handleEvents(sf::Event&);
+	void destroyGameObject(GameObject*);
 
-	void update();
+	virtual void draw(sf::RenderWindow& window);
 
-	void init();
+	virtual void handleEvents(sf::Event&);
 
-	void setPosition(sf::Vector2f);
+	virtual void update();
 
-	friend class DragBar;
+	virtual void init();
+
+	virtual void setPosition(sf::Vector2f);
+
+	sf::Vector2f getPosition();
+
+	sf::Vector2f getSize();
 };
 
 

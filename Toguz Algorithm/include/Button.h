@@ -2,6 +2,7 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
+#include "GameObject.h"
 #include "State.h"
 #include "HasText.h"
 #include "NoText.h"
@@ -9,11 +10,9 @@
 
 enum Button_State {BTN_IDLE = 0, BTN_HOVER, BTN_ACTIVE};
 
-class Button
+class Button : public GameObject
 {
 protected:
-	State& m_parentState;
-
 	sf::RectangleShape m_body;
 
 	TextBehavior* m_textBehavior;
@@ -35,6 +34,8 @@ public:
 	virtual void draw(sf::RenderWindow&);
 
 	void setText(std::string t_string);
+
+	void setPosition(sf::Vector2f t_pos);
 
 	bool isMouseOver();
 protected:

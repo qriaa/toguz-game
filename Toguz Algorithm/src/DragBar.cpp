@@ -18,11 +18,11 @@ void DragBar::update()
 {
 	if (m_isMouseClicked)
 	{
-		sf::Vector2i initPos = sf::Mouse::getPosition(m_parentState.getApp().window);
-		sf::Vector2f mousePos = m_parentState.getApp().window.mapPixelToCoords(initPos);
+		sf::Vector2i initPos = sf::Mouse::getPosition(m_parentState->getApp().window);
+		sf::Vector2f mousePos = m_parentState->getApp().window.mapPixelToCoords(initPos);
 		if (!m_hasRelativePos)
 		{
-			m_mouseRelativePos = mousePos - m_parentBox.m_mainBox.getPosition();
+			m_mouseRelativePos = mousePos - m_parentBox.getPosition();
 			m_hasRelativePos = true;
 		}
 
@@ -56,15 +56,15 @@ void DragBar::setPosition(sf::Vector2f t_pos)
 
 void DragBar::m_initActive()
 {
-	sf::Vector2i initPos = sf::Mouse::getPosition(m_parentState.getApp().window);
-	sf::Vector2f mousePos = m_parentState.getApp().window.mapPixelToCoords(initPos);
-	m_mouseRelativePos = mousePos - m_parentBox.m_mainBox.getPosition();
+	sf::Vector2i initPos = sf::Mouse::getPosition(m_parentState->getApp().window);
+	sf::Vector2f mousePos = m_parentState->getApp().window.mapPixelToCoords(initPos);
+	m_mouseRelativePos = mousePos - m_parentBox.getPosition();
 	m_hasRelativePos = true;
 }
 
 void DragBar::m_doOnActive()
 {
-	sf::Vector2i initPos = sf::Mouse::getPosition(m_parentState.getApp().window);
-	sf::Vector2f mousePos = m_parentState.getApp().window.mapPixelToCoords(initPos);
+	sf::Vector2i initPos = sf::Mouse::getPosition(m_parentState->getApp().window);
+	sf::Vector2f mousePos = m_parentState->getApp().window.mapPixelToCoords(initPos);
 	m_parentBox.setPosition(mousePos - m_mouseRelativePos);
 }

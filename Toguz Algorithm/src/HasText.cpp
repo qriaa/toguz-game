@@ -15,7 +15,22 @@ void HasText::init(sf::RectangleShape& t_body,sf::Font& t_font, std::string t_st
 void HasText::setText(sf::RectangleShape& t_body, std::string t_string)
 {
 	m_text.setString(t_string);
-	m_text.setPosition(sf::Vector2f(t_body.getPosition().x + (t_body.getSize().x / 2) - m_text.getGlobalBounds().width / 2, t_body.getPosition().y + (t_body.getSize().y / 2) - m_text.getGlobalBounds().height));
+	m_text.setPosition(sf::Vector2f(
+		t_body.getPosition().x + (t_body.getSize().x / 2) - m_text.getGlobalBounds().width / 2,
+		t_body.getPosition().y + (t_body.getSize().y / 2) - m_text.getGlobalBounds().height));
+}
+
+void HasText::setSize(int t_size)
+{
+	m_text.setCharacterSize(t_size);
+}
+
+void HasText::setPosition(sf::RectangleShape& t_body, sf::Vector2f t_pos)
+{
+	t_body.setPosition(t_pos);
+	m_text.setPosition(sf::Vector2f(
+		t_body.getPosition().x + (t_body.getSize().x / 2) - m_text.getGlobalBounds().width / 2,
+		t_body.getPosition().y + (t_body.getSize().y / 2) - m_text.getGlobalBounds().height));
 }
 
 void HasText::draw(sf::RenderWindow& t_window)
