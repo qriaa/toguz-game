@@ -1,5 +1,5 @@
 # toguz-algorithm
-Needs SFML 2.5.1
+Needs SFML 2.5.1  
 Needs CMake 3.17.2
 
 ### Naming Rules
