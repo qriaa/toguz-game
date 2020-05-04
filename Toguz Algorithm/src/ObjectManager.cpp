@@ -4,12 +4,11 @@
 ObjectManager::ObjectManager(State* t_parentState):
     m_parentState(t_parentState)
 {
-
 }
 
 ObjectManager::~ObjectManager()
 {
-    for(int i = 0; i > m_gameObjects.size(); i++)
+    for(int i = 0; i < m_gameObjects.size(); i++)
     {
        m_gameObjects[i]->removeObject();
     }
@@ -23,7 +22,7 @@ void ObjectManager::createGameObject(GameObject* t_created)
 
 void ObjectManager::cleanGameObjects()
 {
-    for(int i = 0; i > m_gameObjects.size(); i++)
+    for(int i = 0; i < m_gameObjects.size(); i++)
     {
         if(m_gameObjects[i]->isRemoved())
         {
@@ -33,25 +32,25 @@ void ObjectManager::cleanGameObjects()
     }
 }
 
-void ObjectManager::updateGameObjects()
-{
-    for(int i = 0; i > m_gameObjects.size(); i++)
-    {
-       m_gameObjects[i]->update();
-    }
-}
-
 void ObjectManager::handleEventsGameObjects(sf::Event& t_event)
 {
-    for(int i = 0; i > m_gameObjects.size(); i++)
+    for(int i = 0; i < m_gameObjects.size(); i++)
     {
        m_gameObjects[i]->handleEvents(t_event);
     }
 }
 
+void ObjectManager::updateGameObjects()
+{
+    for(int i = 0; i < m_gameObjects.size(); i++)
+    {
+       m_gameObjects[i]->update();
+    }
+}
+
 void ObjectManager::drawGameObjects(sf::RenderWindow& t_window)
 {
-    for(int i = 0; i > m_gameObjects.size(); i++)
+    for(int i = 0; i < m_gameObjects.size(); i++)
     {
        m_gameObjects[i]->draw(t_window);
     }

@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 class GameObject;
+class ObjectManager;
 class Application;
 
 class State
@@ -11,10 +12,11 @@ class State
 protected:
 	Application& m_app;
 
+	ObjectManager* m_objectManager;
+
 	sf::Texture m_backgroundTexture;
 	sf::Sprite m_backgroundSprite;
 
-	std::vector<GameObject*> m_gameObjects;
 public:
 	sf::Font font;
 
@@ -39,6 +41,8 @@ public:
 	void destroyGameObject(GameObject* t_destroyed);
 
 	void createGameObject(GameObject* t_created);
+
+	void cleanupObjects();
 
 	Application& getApp();
 };

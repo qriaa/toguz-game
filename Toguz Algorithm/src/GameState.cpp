@@ -1,4 +1,5 @@
 #include "GameState.h"
+#include "ObjectManager.h"
 
 GameState::GameState(Application* t_app):
 	State(*t_app, "Toguz Algorithm/res/wood.jpg"),
@@ -22,42 +23,22 @@ GameState::GameState(Application* t_app):
 	createGameObject(new Kazan(this, sf::Vector2f(465,550), sf::Vector2f(870,80), PLR_TWO));
 	createGameObject(new TuzSlot(this, sf::Vector2f(1355,550), sf::Vector2f(80,80), PLR_ONE));
 	createGameObject(new TuzSlot(this, sf::Vector2f(475,450), sf::Vector2f(80,80), PLR_TWO));
-	m_endGame(PLR_ONE);
 }
 
 GameState::~GameState()
 {
-	while (!(m_holes.empty()))
-	{
-		delete m_holes.back();
-		m_holes.pop_back();
-	}
 }
 
 void GameState::draw(sf::RenderWindow& t_window)
 {
 	t_window.draw(m_backgroundSprite);
 
-	for (HoleButton* hole : m_holes)
-	{
-		hole->draw(t_window);
-	}
-	for (GameObject* object : m_gameObjects)
-	{
-		object->draw(t_window);
-	}
+	m_objectManager->drawGameObjects(t_window);
 }
 
 void GameState::handleEvents(sf::Event& t_event)
 {
-	for (HoleButton* hole : m_holes)
-	{
-		hole->handleEvents(t_event);
-	}
-	for (GameObject* object : m_gameObjects)
-	{
-		object->handleEvents(t_event);
-	}
+	m_objectManager->handleEventsGameObjects(t_event);
 }
 
 void GameState::update() //holy fuck what a mess
@@ -68,14 +49,8 @@ void GameState::update() //holy fuck what a mess
 		m_toBeChangedFlag = false;
 	}
 
-	for (HoleButton* hole : m_holes)
-	{
-		hole->update();
-	}
-	for (GameObject* object : m_gameObjects)
-	{
-		object->update();
-	}
+	m_objectManager->updateGameObjects();
+
 	m_playerChanged = false;
 }
 

@@ -1,5 +1,6 @@
 #include "MenuState.h"
 #include "DialogueBox.h"
+#include "ObjectManager.h"
 
 MenuState::MenuState(Application* t_app):
 	State(*t_app, "Toguz Algorithm/res/wood.jpg")
@@ -22,26 +23,17 @@ void MenuState::draw(sf::RenderWindow& t_window)
 {
 	t_window.draw(m_backgroundSprite);
 	t_window.draw(m_titleText);
-	for (GameObject* object : m_gameObjects)
-	{
-		object->draw(t_window);
-	}
+	m_objectManager->drawGameObjects(t_window);
 }
 
 void MenuState::handleEvents(sf::Event& t_event)
 {
-	for (GameObject* object : m_gameObjects)
-	{
-		object->handleEvents(t_event);
-	}
+	m_objectManager->handleEventsGameObjects(t_event);
 }
 
 void MenuState::update()
 {
-	for (GameObject* object : m_gameObjects)
-	{
-		object->update();
-	}
+	m_objectManager->updateGameObjects();
 }
 
 void MenuState::init()

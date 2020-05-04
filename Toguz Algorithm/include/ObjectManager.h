@@ -20,8 +20,8 @@ public:
     void createGameObject(GameObject* t_created);
     void cleanGameObjects();
 
-    void updateGameObjects();
     void handleEventsGameObjects(sf::Event& t_event);
+    void updateGameObjects();
     void drawGameObjects(sf::RenderWindow& t_window);
 };
 

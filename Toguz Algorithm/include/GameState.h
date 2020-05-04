@@ -20,8 +20,6 @@ private:
 	bool m_playerChanged;
 	bool m_toBeChangedFlag;
 
-	std::vector<HoleButton*> m_holes;
-
 	bool m_gameFinished;
 
 public:

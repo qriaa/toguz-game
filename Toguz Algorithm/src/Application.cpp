@@ -49,6 +49,8 @@ void Application::appLoop()
 
 	while (m_isRunning && window.isOpen())
 	{
+		stateManager.getActiveState()->cleanupObjects();
+		stateManager.updateStates();
 		processInput(stateManager.getActiveState());
 		sf::Int32 updateTime = updateClock.getElapsedTime().asMilliseconds();
 
@@ -58,7 +60,6 @@ void Application::appLoop()
 
 			updateNext += m_updateRate;
 		}
-		stateManager.updateStates();
 		window.clear(sf::Color::Black);
 		window.setView(view);
 		stateManager.getActiveState()->draw(window);
