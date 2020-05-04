@@ -56,6 +56,21 @@ void Button::update()
 		}
 	}
 
+	switch (m_btnState)
+	{
+	case BTN_IDLE:
+		m_doOnIdle();
+		break;
+
+	case BTN_HOVER:
+		m_doOnHover();
+		break;
+
+	case BTN_ACTIVE:
+		m_doOnActive();
+		break;
+	}
+
 	if (m_previousState != m_btnState)
 	{
 		switch (m_btnState)
@@ -72,21 +87,6 @@ void Button::update()
 			m_initActive();
 			break;
 		}
-	}
-
-	switch (m_btnState)
-	{
-	case BTN_IDLE:
-		m_doOnIdle();
-		break;
-
-	case BTN_HOVER:
-		m_doOnHover();
-		break;
-
-	case BTN_ACTIVE:
-		m_doOnActive();
-		break;
 	}
 
 	m_previousState = m_btnState;

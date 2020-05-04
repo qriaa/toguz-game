@@ -34,7 +34,8 @@ public:
 	virtual void init() = 0;
 
 	/* do NOT use in loops deleting all objects (idk why doesnt that work)
-	weird vector and pointer stuff (possibly reallocation) */
+	weird vector and pointer stuff (possibly reallocation)
+	(this message just might be technobabble at this point) */
 	void destroyGameObject(GameObject* t_destroyed);
 
 	void createGameObject(GameObject* t_created);

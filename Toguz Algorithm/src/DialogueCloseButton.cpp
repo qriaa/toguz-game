@@ -35,5 +35,5 @@ void DialogueCloseButton::setPosition(sf::Vector2f t_pos)
 
 void DialogueCloseButton::m_initActive()
 {
-	m_parentBox->kill();
+	m_parentBox->removeObject();
 }

@@ -4,12 +4,13 @@
 
 #include <SFML/Graphics.hpp>
 #include "Identifiers.h"
-#include "State.h"
+class State;
 
 class GameObject
 {
 protected:
 	State* m_parentState;
+	bool m_removalMarker;
 
 public:
 	GameObject(State* t_state);
@@ -24,7 +25,9 @@ public:
 
 	virtual void init();
 
-	void kill();
+	void removeObject();
+	
+	bool isRemoved();
 };
 
 #endif

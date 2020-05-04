@@ -1,7 +1,9 @@
 #include "GameObject.h"
+#include "State.h"
 
 GameObject::GameObject(State* t_state):
-	m_parentState(t_state)
+	m_parentState(t_state),
+	m_removalMarker(false)
 {
 }
 
@@ -25,7 +27,12 @@ void GameObject::init()
 {
 }
 
-void GameObject::kill()
+void GameObject::removeObject()
 {
-	m_parentState->destroyGameObject(this);
+	m_removalMarker = true;
+}
+
+bool GameObject::isRemoved()
+{
+	return m_removalMarker;
 }

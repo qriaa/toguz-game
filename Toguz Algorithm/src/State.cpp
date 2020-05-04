@@ -31,15 +31,7 @@ void State::resume()
 
 void State::destroyGameObject(GameObject* t_destroyed) 
 {
-	for (int i = 0; i < m_gameObjects.size(); i++)
-	{
-		if (m_gameObjects[i] == t_destroyed)
-		{
-			delete m_gameObjects[i];
-			m_gameObjects.erase(m_gameObjects.begin() + i);
-			return;
-		}
-	}
+
 }
 
 void State::createGameObject(GameObject* t_created)

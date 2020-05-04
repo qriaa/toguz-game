@@ -22,6 +22,7 @@ GameState::GameState(Application* t_app):
 	createGameObject(new Kazan(this, sf::Vector2f(465,550), sf::Vector2f(870,80), PLR_TWO));
 	createGameObject(new TuzSlot(this, sf::Vector2f(1355,550), sf::Vector2f(80,80), PLR_ONE));
 	createGameObject(new TuzSlot(this, sf::Vector2f(475,450), sf::Vector2f(80,80), PLR_TWO));
+	m_endGame(PLR_ONE);
 }
 
 GameState::~GameState()
