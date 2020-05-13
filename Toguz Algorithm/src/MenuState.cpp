@@ -1,9 +1,10 @@
 #include "MenuState.h"
 #include "DialogueBox.h"
 #include "ObjectManager.h"
+#include "Application.h"
 
 MenuState::MenuState(Application* t_app):
-	State(*t_app, "Toguz Algorithm/res/wood.jpg")
+	State(*t_app, "wood.jpg")
 {
 	createGameObject(new StateButton(this, sf::Vector2f(100, 1080 / 3), sf::Vector2f(300, 100), "Play", CHC_goGame));
 	createGameObject(new StateButton(this, sf::Vector2f(100, 1080 / 3 * 2), sf::Vector2f(300, 100), "Quit", CHC_quit));

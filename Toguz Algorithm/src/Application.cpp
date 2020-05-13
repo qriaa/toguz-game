@@ -29,6 +29,7 @@ void Application::run()
 	window.create(sf::VideoMode(WINDOW_SIZE.x, WINDOW_SIZE.y), "Toguz Korgool");
 	view.reset(sf::FloatRect(sf::Vector2f(0,0), static_cast<sf::Vector2f>(window.getSize())));
 	window.setView(view);
+	window.setFramerateLimit(60);
 	m_isRunning = true;
 
 	stateManager.addState(new MenuState(this), false);
@@ -129,4 +130,22 @@ void Application::updateAspectRatio()
 
 		view.setViewport(sf::FloatRect(0.f,barFactor,1.f,viewFactor));
 	}
+}
+
+void Application::setExePath(std::string t_exePath)
+{
+	m_exePath = t_exePath;
+	return;
+}
+
+std::string Application::getExePath()
+{
+	return m_exePath;
+}
+
+std::string Application::getResPath()
+{
+	std::string tempExePath = this->getExePath();
+	tempExePath.erase(tempExePath.end() - 10, tempExePath.end());
+	return tempExePath + "../Toguz Algorithm/res/";
 }

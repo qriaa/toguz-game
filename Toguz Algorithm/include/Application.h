@@ -15,6 +15,7 @@ class Application
 private:
 	bool m_isRunning;
 	sf::Uint32 m_updateRate;
+	std::string m_exePath;
 
 	static Application* m_app;
 
@@ -24,7 +25,7 @@ public:
 
 	const sf::Vector2i WINDOW_SIZE;
 	sf::RenderWindow window;
-	
+
 	sf::View view;
 
 	~Application();
@@ -45,6 +46,11 @@ public:
 
 	void updateAspectRatio();
 
+	void setExePath(std::string);
+
+	std::string getExePath();
+
+	std::string getResPath();
 private:
 	Application(const Application&);
 	Application& operator=(const Application&);

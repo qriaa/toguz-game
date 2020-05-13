@@ -4,6 +4,12 @@ project(toguz-game VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
+set(CMAKE_C_COMPILER clang)
+set(CMAKE_CXX_COMPILER clang++)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
+set(CMAKE_BUILD_TYPE Debug)
+
 SET(SFML_DIR /usr/local/lib/SFML-2.5.1/lib/cmake/SFML)
 message("SFML_DIR "  ${SFML_DIR})
 find_package(SFML 2 COMPONENTS graphics window system)

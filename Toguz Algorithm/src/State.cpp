@@ -1,17 +1,18 @@
 #include "State.h"
 #include "GameObject.h"
 #include "ObjectManager.h"
+#include "Application.h"
 
 State::State(Application& t_app, std::string t_backgroundTexturePath):
 	m_app(t_app)
 {
 	m_objectManager = new ObjectManager(this);
-	m_backgroundTexture.loadFromFile(t_backgroundTexturePath);
+	m_backgroundTexture.loadFromFile(Application::getApp()->getResPath() + t_backgroundTexturePath);
 	m_backgroundTexture.setRepeated(true);
 	m_backgroundSprite.setTexture(m_backgroundTexture);
 	m_backgroundSprite.setTextureRect(sf::IntRect(sf::Vector2i(0, 0), sf::Vector2i(1920, 1080)));
 
-	font.loadFromFile("Toguz Algorithm/res/comic.ttf");
+	font.loadFromFile(Application::getApp()->getResPath() + "comic.ttf");
 }
 
 State::~State()

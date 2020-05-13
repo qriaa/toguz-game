@@ -2,7 +2,7 @@
 #include "ObjectManager.h"
 
 GameState::GameState(Application* t_app):
-	State(*t_app, "Toguz Algorithm/res/wood.jpg"),
+	State(*t_app, "wood.jpg"),
 	m_board(),
 	m_activePlayer(PLR_ONE),
 	m_playerChanged(false),
